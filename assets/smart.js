@@ -211,6 +211,7 @@
       if (has(/где|обита|живет|живут|водит|спавн|spawn|лов[ия]т|поймат|встрет|локац|ареал|habitat|where/) && !has(/взять яйц|пассив/) && ent && ent.kind == "pal") return { ...res, type: "where", pal: D.pals[ent.ref] };
       if (has(/вывест|скрест|развед|размнож|breed|получ|завест|яйц/) && ent && ent.kind == "pal") return { ...res, type: "breed", pal: D.pals[ent.ref], b: breed(D.pals[ent.ref]) };
       if (has(/где|взять|найти|добыть|достать|фарм|получ|скрафт|крафт|купить/) && ent && ent.kind == "item") return { ...res, type: "item", item: D.items[ent.ref] };
+      if (has(/(ягод|огород|грядк|плантац|урожа|пшениц|томат|салат|посев|посад)/) && !has(/ранч|яйц|шерст|молок/)) return { ...res, type: "plant", works: ["\u041F\u043E\u0441\u0435\u0432 \u0441\u0435\u043C\u044F\u043D", "\u041F\u043E\u043B\u0438\u0432", "\u0421\u0431\u043E\u0440"].map((w2) => [w2, topWork(w2)]) };
       const w = (WORKS.find(([r]) => n.split(" ").some((x) => r.test(x))) || [])[1];
       if (w && (has(/лучш|топ|кто|сильн|best|какой|какие|самый/) || !ent)) return { ...res, type: "work", work: w, top: topWork(w) };
       if (has(/(лучш|быстр|самый|топ).*(ездов|маунт|летающ|скакун|верхов)|(ездов|маунт|летающ).*(лучш|быстр)/)) {
@@ -314,6 +315,9 @@
         h = `<div class="sa-k">\u041A\u0430\u043A \u0432\u044B\u0432\u0435\u0441\u0442\u0438 \xB7 ${esc(p.ru)}</div>${mini(p)}` + (b.unique ? `<div>\u041E\u0441\u043E\u0431\u0430\u044F \u043F\u0430\u0440\u0430: <b>${b.unique.map(esc).join(" + ")}</b></div>` : `<ul>${(b.pairs || []).map((x) => `<li>${pl(x[0])} + ${pl(x[1])}</li>`).join("")}</ul><div class="dym">\u041F\u0440\u0438\u043C\u0435\u0440\u044B \u043F\u0430\u0440 \u043F\u043E \u0440\u0430\u043D\u0433\u0443 \u0440\u0430\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u044F (${p.rank}). \u0415\u0449\u0451 \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u0439\u043C\u0430\u0442\u044C${p.egg ? " \u0438\u043B\u0438 \u0432\u044B\u043B\u0443\u043F\u0438\u0442\u044C \u0438\u0437 \u044F\u0439\u0446\u0430 \xAB" + esc(p.egg) + "\xBB" : ""}.</div>`);
         break;
       }
+      case "plant":
+        h = `<div class="sa-k">\u041E\u0433\u043E\u0440\u043E\u0434 \u0438 \u044F\u0433\u043E\u0434\u044B</div><h3>\u041F\u043E\u0441\u0435\u0432, \u041F\u043E\u043B\u0438\u0432, \u0421\u0431\u043E\u0440</h3><p>\u041F\u043B\u0430\u043D\u0442\u0430\u0446\u0438\u044E \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u044E\u0442 \u0442\u0440\u0438 \u0440\u0430\u0431\u043E\u0442\u044B. \xAB\u0424\u0435\u0440\u043C\u0435\u0440\u0441\u0442\u0432\u043E\xBB \u2014 \u044D\u0442\u043E \u0440\u0430\u043D\u0447\u043E, \u043A \u044F\u0433\u043E\u0434\u0430\u043C \u043E\u043D\u043E \u043D\u0435 \u043E\u0442\u043D\u043E\u0441\u0438\u0442\u0441\u044F.</p>` + a.works.map(([w, t]) => `<h4>${esc(w)}</h4><ol>${t.slice(0, 5).map(([p, l]) => `<li>${pl(p)} \u2014 \u0443\u0440. ${l} ${p.el.map(chip).join("")}</li>`).join("")}</ol>`).join("");
+        break;
       case "work":
         h = `<div class="sa-k">\u041B\u0443\u0447\u0448\u0438\u0435 \u0432 \u0440\u0430\u0431\u043E\u0442\u0435</div><h3>${esc(a.work)}</h3><ol>${a.top.map(([p, l]) => `<li>${pl(p)} \u2014 \u0443\u0440. ${l} ${p.el.map(chip).join("")}</li>`).join("")}</ol>`;
         break;
