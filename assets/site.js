@@ -45,10 +45,23 @@ window.PW_pop = function(o) {
     f.innerHTML = `<input id="gq" name="pp-q-gq" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="\u041D\u0430\u0439\u0442\u0438 \u043F\u0430\u043B\u0430\u2026">` + sel("ge", "\u0421\u0442\u0438\u0445\u0438\u044F", ELS.map((e) => [e, e])) + sel("gw", "\u0420\u0430\u0431\u043E\u0442\u0430", WORKS.map((e) => [e, e])) + sel("gl", "\u0423\u0440. \u0440\u0430\u0431\u043E\u0442\u044B \u2265", [1, 2, 3, 4, 5].map((e) => [e, "\u2265 " + e])) + sel("gm", "\u0415\u0437\u0434\u0430", [["ride", "\u{1F40E} \u0435\u0437\u0434\u043E\u0432\u043E\u0439"], ["fly", "\u{1F985} \u043B\u0435\u0442\u0430\u044E\u0449\u0438\u0439"]]) + sel("ga", "\u041F\u0430\u0440\u0442\u043D\u0451\u0440\u043A\u0430", Object.entries(ACT)) + sel("gs", "\u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430", [["no", "\u043F\u043E \u043D\u043E\u043C\u0435\u0440\u0443"], ["ru", "\u043F\u043E \u0438\u043C\u0435\u043D\u0438"], ["atk", "\u0430\u0442\u0430\u043A\u0430 \u2193"], ["hp", "HP \u2193"], ["work", "\u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0440\u0430\u0431\u043E\u0442\u044B \u2193"], ["sprint", "\u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u2193"]]) + `<span class="gal-count" id="gc"></span>`;
     const pals = D.pals.filter((p) => p.url);
     const $ = (id) => document.getElementById(id).value;
+    const _qv = (v) => {
+      v = (v || "").trim();
+      const C = window.PW_core;
+      if (!v) return [];
+      if (!C || !C.norm) return [v.toLowerCase().replace(/ё/g, "\u0435")];
+      const n = C.norm(v);
+      let f2 = null;
+      try {
+        f2 = C.fixLayout && C.fixLayout(v.toLowerCase());
+      } catch (e) {
+      }
+      return f2 && f2[1] ? [n, C.norm(f2[0])] : [n];
+    };
     const run = () => {
-      const q = window.PW_core.norm($("gq")), e = $("ge"), w = $("gw"), l = +$("gl") || 0, m = $("gm"), a = $("ga"), s = $("gs") || "no";
+      const qs = _qv($("gq")), e = $("ge"), w = $("gw"), l = +$("gl") || 0, m = $("gm"), a = $("ga"), s = $("gs") || "no";
       const wl = (p) => (p.work.find((x) => x[0] == w) || [0, 0])[1];
-      let r = pals.filter((p) => (!q || window.PW_core.norm(p.ru + " " + p.en).includes(q)) && (!e || p.el.includes(e)) && (!w || wl(p) >= Math.max(1, l)) && (w || !l || p.work.some((x) => x[1] >= l)) && (!m || (m == "ride" ? p.mount : p.mount == "fly")) && (!a || p.act.includes(a)));
+      let r = pals.filter((p) => (!qs.length || qs.some((q) => window.PW_core.norm(p.ru + " " + p.en).includes(q))) && (!e || p.el.includes(e)) && (!w || wl(p) >= Math.max(1, l)) && (w || !l || p.work.some((x) => x[1] >= l)) && (!m || (m == "ride" ? p.mount : p.mount == "fly")) && (!a || p.act.includes(a)));
       const num = (p) => parseFloat(p.no) || 999;
       r.sort(s == "ru" ? (x, y) => x.ru.localeCompare(y.ru, "ru") : s == "no" ? (x, y) => num(x) - num(y) || x.no.localeCompare(y.no) : s == "work" ? (x, y) => w ? wl(y) - wl(x) : Math.max(0, ...y.work.map((z) => z[1])) - Math.max(0, ...x.work.map((z) => z[1])) : (x, y) => y[s] - x[s]);
       g.innerHTML = r.map(card).join("");
@@ -216,11 +229,24 @@ window.PW_pop = function(o) {
     const box = document.getElementById("bygroup");
     const ps = D.pals.filter((p) => p.url);
     let mode = "el";
-    box.innerHTML = '<div class="gal-filters"><div class="seg"><button data-m="el" class="on">\u041F\u043E \u0441\u0442\u0438\u0445\u0438\u044F\u043C</button><button data-m="work">\u041F\u043E \u0440\u0430\u0431\u043E\u0442\u0435</button></div><input id="bgq" name="pp-q-bgq" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="\u041D\u0430\u0439\u0442\u0438 \u043F\u0430\u043B\u0430\u2026"></div><div id="bgo"></div>';
+    box.innerHTML = '<div class="gal-filters plain"><div class="seg"><button data-m="el" class="on">\u041F\u043E \u0441\u0442\u0438\u0445\u0438\u044F\u043C</button><button data-m="work">\u041F\u043E \u0440\u0430\u0431\u043E\u0442\u0435</button></div><input id="bgq" name="pp-q-bgq" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="\u041D\u0430\u0439\u0442\u0438 \u043F\u0430\u043B\u0430\u2026"></div><div id="bgo"></div>';
     const mini = (p, lv) => `<a class="mc card-link" href="${B + p.url}"><img src="${B + p.thumb}" alt="" loading="lazy" width="64" height="64"><span>${esc(p.ru)}</span>${lv ? `<em class="lv">${lv}</em>` : ""}</a>`;
+    const _qv = (v) => {
+      v = (v || "").trim();
+      const C = window.PW_core;
+      if (!v) return [];
+      if (!C || !C.norm) return [v.toLowerCase().replace(/ё/g, "\u0435")];
+      const n = C.norm(v);
+      let f = null;
+      try {
+        f = C.fixLayout && C.fixLayout(v.toLowerCase());
+      } catch (e) {
+      }
+      return f && f[1] ? [n, C.norm(f[0])] : [n];
+    };
     const draw = () => {
-      const q = window.PW_core ? window.PW_core.norm(document.getElementById("bgq").value) : "";
-      const f = (p) => !q || window.PW_core.norm(p.ru + " " + p.en).includes(q);
+      const qs = _qv(document.getElementById("bgq").value), q = qs.length ? qs[0] : "";
+      const f = (p) => !qs.length || qs.some((x) => window.PW_core.norm(p.ru + " " + p.en).includes(x));
       let h = "";
       const open = window.innerWidth > 700 || q;
       if (mode == "el") for (const e of Object.keys(EI)) {

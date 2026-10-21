@@ -421,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
           g = { m: "pinch", d0: Math.hypot(a.x - b.x, a.y - b.y) || 1, s0: s, cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2, tx0: tx, ty0: ty, r };
         } else {
           const a = pt(e.touches[0], r);
-          g = { m: "one", x0: a.x, y0: a.y, tx0: tx, ty0: ty, r, dir: zoomed() ? "pan" : null, t: performance.now() };
+          g = { m: "one", x0: a.x, y0: a.y, tx0: tx, ty0: ty, r, dir: null, t: performance.now() };
         }
       }, { passive: false });
       bx.addEventListener("touchmove", (e) => {
@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (g.m != "one") return;
         const a = pt(e.touches[0], r), dx = a.x - g.x0, dy = a.y - g.y0;
-        if (!g.dir && Math.hypot(dx, dy) > 8) g.dir = Math.abs(dx) > Math.abs(dy) * 1.2 && s > 1.001 ? "pan" : "page";
+        if (!g.dir && Math.hypot(dx, dy) > 8) g.dir = Math.abs(dx) > Math.abs(dy) * 1.2 && (s > 1.001 || zoomed()) ? "pan" : "page";
         if (g.dir == "pan") {
           e.preventDefault();
           tx = g.tx0 + dx;

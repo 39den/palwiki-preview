@@ -170,15 +170,16 @@
           const gaps = [...new Set(bosses.filter((b) => !b.weak.some((w) => els.has(w))).flatMap((b) => b.weak))];
           cov = `<div class="cov">\u0421\u0442\u0438\u0445\u0438\u0438 \u043A\u043E\u043C\u0430\u043D\u0434\u044B: ${[...els].map(chip).join("")}<br>\u041F\u043E\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u0441\u043B\u0430\u0431\u043E\u0441\u0442\u044C ${ok.length} \u0438\u0437 ${bosses.length} \u0431\u043E\u0441\u0441\u043E\u0432.${gaps.length ? ` \u041D\u0435 \u0445\u0432\u0430\u0442\u0430\u0435\u0442: ${gaps.map(chip).join("")}` : " \u{1F44D} \u0412\u0441\u0435 \u0431\u043E\u0441\u0441\u044B \u0437\u0430\u043A\u0440\u044B\u0442\u044B."}${ps.length > 5 ? "<br><b>\u0412 \u043A\u043E\u043C\u0430\u043D\u0434\u0435 \u0431\u043E\u043B\u044C\u0448\u0435 5 \u043F\u0430\u043B\u043E\u0432</b> \u2014 \u0432 \u0438\u0433\u0440\u0435 \u0432 \u043E\u0442\u0440\u044F\u0434\u0435 \u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C 5." : ""}</div>`;
         }
-        return `<div class="grp"><summary>${esc(n)} <span class="cnt">${ps.length}</span>${["\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435", "\u041A\u043E\u043C\u0430\u043D\u0434\u0430", "\u0424\u0430\u0440\u043C"].includes(n) ? "" : ` <button class="lnk" data-del="${esc(n)}">\u0443\u0434\u0430\u043B\u0438\u0442\u044C</button>`}</summary>${cov}<div class="mgrid">${ps.map((p) => `<div class="mcw"><a class="mc card-link" href="${B + p.url}"><img src="${B + p.thumb}" width="60" height="60" alt=""><span>${esc(p.ru)}</span></a><button class="rm" data-l="${esc(n)}" data-i="${p.id}" aria-label="\u0423\u0431\u0440\u0430\u0442\u044C">\xD7</button></div>`).join("") || "<small>\u041F\u0443\u0441\u0442\u043E. \u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0439 \u043F\u0430\u043B\u043E\u0432 \u043A\u043D\u043E\u043F\u043A\u0430\u043C\u0438 \u043D\u0430 \u0438\u0445 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430\u0445.</small>"}</div></div>`;
-      }).join("") + `<div class="gal-filters"><input id="nl" name="pp-list-name" type="text" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0441\u043F\u0438\u0441\u043A\u0430"><button class="md-button md-button--primary" id="nlb">\u0421\u043E\u0437\u0434\u0430\u0442\u044C</button></div>` + builds(D);
+        return `<details class="grp" open><summary>${esc(n)} <span class="cnt">${ps.length}</span>${["\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435", "\u041A\u043E\u043C\u0430\u043D\u0434\u0430", "\u0424\u0430\u0440\u043C"].includes(n) ? "" : ` <button class="lnk" data-del="${esc(n)}">\u0443\u0434\u0430\u043B\u0438\u0442\u044C</button>`}</summary>${cov}<div class="mgrid">${ps.map((p) => `<div class="mcw"><a class="mc card-link" href="${B + p.url}"><img src="${B + p.thumb}" width="60" height="60" alt=""><span>${esc(p.ru)}</span></a><button class="rm" data-l="${esc(n)}" data-i="${p.id}" aria-label="\u0423\u0431\u0440\u0430\u0442\u044C">\xD7</button></div>`).join("") || "<small>\u041F\u0443\u0441\u0442\u043E. \u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0439 \u043F\u0430\u043B\u043E\u0432 \u043A\u043D\u043E\u043F\u043A\u0430\u043C\u0438 \u2605 \u2694\uFE0F \u{1F33E} \u043D\u0430 \u0438\u0445 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430\u0445.</small>"}</div></details>`;
+      }).join("") + `<div class="gal-filters plain"><input id="nl" name="pp-list-name" type="text" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0441\u043F\u0438\u0441\u043A\u0430"><button class="md-button md-button--primary" id="nlb">\u0421\u043E\u0437\u0434\u0430\u0442\u044C</button></div>` + builds(D);
       el.querySelectorAll(".rm").forEach((b) => b.onclick = () => {
         const L3 = lists();
         L3[b.dataset.l] = L3[b.dataset.l].filter((x) => x != b.dataset.i);
         saveL(L3);
         draw();
       });
-      el.querySelectorAll("[data-del]").forEach((b) => b.onclick = () => {
+      el.querySelectorAll("[data-del]").forEach((b) => b.onclick = (ev) => {
+        ev.preventDefault();
         const L3 = lists();
         delete L3[b.dataset.del];
         saveL(L3);
@@ -191,8 +192,14 @@
         draw();
       });
       document.getElementById("nlb").onclick = () => {
-        const v = document.getElementById("nl").value.trim();
-        if (!v) return;
+        const ni = document.getElementById("nl"), v = ni.value.trim();
+        if (!v) {
+          ni.focus();
+          ni.placeholder = "\u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0432\u043F\u0438\u0448\u0438 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435";
+          ni.classList.add("need");
+          setTimeout(() => ni.classList.remove("need"), 1200);
+          return;
+        }
         const L3 = lists();
         L3[v] = L3[v] || [];
         saveL(L3);
@@ -883,11 +890,25 @@
   document.addEventListener("DOMContentLoaded", () => {
     const f = document.getElementById("bfl");
     if (!f) return;
+    const _qv = (v) => {
+      v = (v || "").trim();
+      const C = window.PW_core;
+      if (!v) return [];
+      if (!C || !C.norm) return [v.toLowerCase().replace(/ё/g, "\u0435")];
+      const n = C.norm(v);
+      let f2 = null;
+      try {
+        f2 = C.fixLayout && C.fixLayout(v.toLowerCase());
+      } catch (e) {
+      }
+      return f2 && f2[1] ? [n, C.norm(f2[0])] : [n];
+    };
     const run = () => {
-      const q = (document.getElementById("bq2").value || "").toLowerCase().replace(/ё/g, "\u0435"), k = document.getElementById("bk").value, e = document.getElementById("be").value, l = document.getElementById("bl").value;
+      const qs = _qv(document.getElementById("bq2").value), k = document.getElementById("bk").value, e = document.getElementById("be").value, l = document.getElementById("bl").value;
       let n = 0;
       document.querySelectorAll(".bgal .bc").forEach((a) => {
-        let ok = (!q || a.dataset.n.replace(/ё/g, "\u0435").includes(q)) && (!k || a.dataset.k == k) && (!e || a.dataset.el.includes(e));
+        const dn = a.dataset.n.toLowerCase().replace(/ё/g, "\u0435");
+        let ok = (!qs.length || qs.some((q) => dn.includes(q) || window.PW_core && window.PW_core.norm(dn).includes(q))) && (!k || a.dataset.k == k) && (!e || a.dataset.el.includes(e));
         if (ok && l) {
           const [lo, hi] = l.split("-").map(Number);
           const v = +a.dataset.lv;
