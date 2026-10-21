@@ -145,10 +145,10 @@ html.pp26 .pp-brand{font:800 17px/1 Unbounded,Manrope,sans-serif;letter-spacing:
 @media (max-width:599px){html.pp26 .pp-brand{display:none}}
 html.pp26 .md-header__title{display:none!important}
 /* stage-1 pages: no side columns, centred 1280 grid */
-@media (min-width:1220px){html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-sidebar{display:none}
- html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-content{max-width:1280px;margin:0 auto}
- html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-main__inner{max-width:1280px}}
-@media (min-width:960px) and (max-width:1219px){html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal) .md-sidebar--secondary{display:none}}
+@media (min-width:1220px){html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-sidebar,html.pp26 body:has(.pal-hero,.boss-hero,.hero .smart-box,#gallery,#pwmap,.igrid,.icard) .md-sidebar{display:none}
+ html.pp26 body:has(.pal-hero,.boss-hero,.hero .smart-box,#gallery,#pwmap,.igrid,.icard) .md-content,html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-content{max-width:1280px;margin:0 auto}
+ html.pp26 body:has(.pal-hero,.boss-hero,.hero .smart-box,#gallery,#pwmap,.igrid,.icard) .md-main__inner,html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-main__inner{max-width:1280px}}
+@media (min-width:960px) and (max-width:1219px){html.pp26 body:has(.pal-hero,.boss-hero,.hero .smart-box,#gallery) .md-sidebar--secondary,html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal) .md-sidebar--secondary{display:none}}
 /* home hero: sky scene + cast */
 html.pp26 .hero{background:linear-gradient(180deg,#5db7ec 0%,#9fd6f3 38%,#ffe2a8 64%,#f6b37a 100%)!important;min-height:560px;isolation:isolate;align-items:flex-end}
 html.pp26 .hero:before,html.pp26 .hero:after{display:none!important}
@@ -215,3 +215,15 @@ html.pp26 .sx-card .sa-k,html.pp26 .ux-aicard .sa-k{color:var(--blue,#2f6fde)}
 /* gallery CLS: don't paint the grid/skeleton until filters exist; reserve header option slot */
 html.pp26 .gal-filters:empty{min-height:188px;visibility:hidden}
 html.pp26 #gallery:empty,html.pp26 .gal-filters:empty~#gallery{visibility:hidden}
+/* pp26: install hint never covers the hero/bottom nav (install stays available from the browser menu) */
+html.pp26 .inst{display:none!important}
+html.pp26 .md-typeset details.itm{border:1px solid var(--pline)}
+
+/* CLS: fixed tab/header metrics so the web-font swap can't move the page; content stays unpainted until pp26.js has rearranged it */
+html.pp26 .md-tabs__link{height:35px;line-height:19px;box-sizing:border-box;display:inline-flex;align-items:center}
+html.pp26 .md-tabs{height:48px;overflow:hidden}
+html.pp26:not(.pp-ready) .md-main{visibility:hidden}
+/* mobile pal hero: name visible on first screen */
+@media (max-width:600px){html.pp26 .pal-hero .pal-art{max-height:230px;width:auto;max-width:70%;margin:0 auto;display:block;object-fit:contain}}
+/* deep-linked item card not hidden under the sticky search box */
+html.pp26 details.itm,details.itm{scroll-margin-top:calc(var(--hdr,64px) + 150px)}
