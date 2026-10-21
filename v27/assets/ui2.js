@@ -35,7 +35,18 @@
     (D.bcards || []).forEach((b) => add({ t: "boss", label: b.n, alt: b.pal, sub: b.k + " \xB7 \u0443\u0440. " + b.lv.filter(Boolean).join(" / "), img: b.t, url: b.u, w: 2 }));
     D.passives.forEach((q) => add({ t: "passive", label: q.name, alt: q.en, sub: "\u0440\u0430\u043D\u0433 " + q.rank + " \xB7 " + (q.desc || "").slice(0, 60), url: q.url, w: 1, rank: q.rank }));
     D.items.forEach((i) => i.url && add({ t: "item", label: i.ru, alt: i.en, sub: i.type || "\u043F\u0440\u0435\u0434\u043C\u0435\u0442", url: i.url, w: 0.5 }));
-    [["\u0420\u0430\u0431\u043E\u0442\u0430 \u043F\u0430\u043B\u043E\u0432", "2_mehaniki/rabota/", "\u{1F6E0}\uFE0F", "\u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u044B \u0440\u0443\u0447\u043D\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0440\u0430\u0431\u043E\u0442\u044B \u043A\u0430\u043A \u0430\u043F\u043D\u0443\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0443 \u043F\u043E\u0434\u043D\u044F\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0443 \u043F\u0440\u0438\u0433\u043E\u0434\u043D\u043E\u0441\u0442\u044C \u043A \u0440\u0430\u0431\u043E\u0442\u0435 \u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0440\u0430\u0431\u043E\u0442\u044B"], ["\u041A\u0430\u0440\u0442\u0430", "map/", "\u{1F5FA}\uFE0F", "\u043A\u0430\u0440\u0442\u0430 map \u0442\u0435\u043B\u0435\u043F\u043E\u0440\u0442 \u0431\u0430\u0448\u043D\u044F"], ["\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0440\u0430\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u044F", "breed/", "\u{1F9EC}", "\u0440\u0430\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u0435 \u0441\u043A\u0440\u0435\u0441\u0442\u0438\u0442\u044C \u0432\u044B\u0432\u0435\u0441\u0442\u0438"], ["\u0421\u0440\u0430\u0432\u043D\u0438\u0442\u044C \u043F\u0430\u043B\u043E\u0432", "compare/", "\u2696\uFE0F", "\u0441\u0440\u0430\u0432\u043D\u0438\u0442\u044C \u0441\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u0435"], ["\u0413\u0430\u043B\u0435\u0440\u0435\u044F \u043F\u0430\u043B\u043E\u0432", "gallery/", "\u{1F43E}", "\u0433\u0430\u043B\u0435\u0440\u0435\u044F \u043F\u0430\u043B\u044B \u0444\u0438\u043B\u044C\u0442\u0440"], ["\u041C\u043E\u0438 \u0441\u043F\u0438\u0441\u043A\u0438", "my/", "\u2B50", "\u0438\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435 \u0441\u043F\u0438\u0441\u043A\u0438 \u0441\u0431\u043E\u0440\u043A\u0438 \u043A\u043E\u043C\u0430\u043D\u0434\u0430"], ["\u0412\u0441\u0435 \u0431\u043E\u0441\u0441\u044B", "boss/", "\u{1F451}", "\u0431\u043E\u0441\u0441\u044B \u0431\u0430\u0448\u043D\u0438 \u0440\u0435\u0439\u0434\u044B"], ["\u0412\u0441\u0435 \u043F\u0430\u0441\u0441\u0438\u0432\u043A\u0438", "passivki/", "\u2728", "\u043F\u0430\u0441\u0441\u0438\u0432\u043A\u0438"], ["\u0415\u0434\u0430 \u0438 \u0431\u0430\u0444\u0444\u044B", "guide/eda/", "\u{1F372}", "\u0435\u0434\u0430 \u0431\u0430\u0444 \u0431\u0430\u0444\u0444 \u0431\u0430\u0444\u044B \u043F\u0438\u0446\u0446\u0430 \u0431\u043B\u044E\u0434\u043E \u0431\u043B\u044E\u0434\u0430 \u043A\u0443\u0445\u043D\u044F \u0433\u043E\u0442\u043E\u0432\u0438\u0442\u044C \u0441\u044B\u0442\u043E\u0441\u0442\u044C"]].forEach(([l, u, i, a]) => add({ t: "page", label: l, alt: a, sub: "\u0440\u0430\u0437\u0434\u0435\u043B", ic: i, url: u, w: 1 }));
+    [
+      /*WORKCALC off 21.10*/
+      ["\u0420\u0430\u0431\u043E\u0442\u0430 \u043F\u0430\u043B\u043E\u0432", "2_mehaniki/rabota/", "\u{1F6E0}\uFE0F", "\u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u044B \u0440\u0443\u0447\u043D\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0440\u0430\u0431\u043E\u0442\u044B \u043A\u0430\u043A \u0430\u043F\u043D\u0443\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0443 \u043F\u043E\u0434\u043D\u044F\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0443 \u043F\u0440\u0438\u0433\u043E\u0434\u043D\u043E\u0441\u0442\u044C \u043A \u0440\u0430\u0431\u043E\u0442\u0435 \u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0440\u0430\u0431\u043E\u0442\u044B"],
+      ["\u041A\u0430\u0440\u0442\u0430", "map/", "\u{1F5FA}\uFE0F", "\u043A\u0430\u0440\u0442\u0430 map \u0442\u0435\u043B\u0435\u043F\u043E\u0440\u0442 \u0431\u0430\u0448\u043D\u044F"],
+      ["\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0440\u0430\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u044F", "breed/", "\u{1F9EC}", "\u0440\u0430\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u0435 \u0441\u043A\u0440\u0435\u0441\u0442\u0438\u0442\u044C \u0432\u044B\u0432\u0435\u0441\u0442\u0438"],
+      ["\u0421\u0440\u0430\u0432\u043D\u0438\u0442\u044C \u043F\u0430\u043B\u043E\u0432", "compare/", "\u2696\uFE0F", "\u0441\u0440\u0430\u0432\u043D\u0438\u0442\u044C \u0441\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u0435"],
+      ["\u0413\u0430\u043B\u0435\u0440\u0435\u044F \u043F\u0430\u043B\u043E\u0432", "gallery/", "\u{1F43E}", "\u0433\u0430\u043B\u0435\u0440\u0435\u044F \u043F\u0430\u043B\u044B \u0444\u0438\u043B\u044C\u0442\u0440"],
+      ["\u041C\u043E\u0438 \u0441\u043F\u0438\u0441\u043A\u0438", "my/", "\u2B50", "\u0438\u0437\u0431\u0440\u0430\u043D\u043D\u043E\u0435 \u0441\u043F\u0438\u0441\u043A\u0438 \u0441\u0431\u043E\u0440\u043A\u0438 \u043A\u043E\u043C\u0430\u043D\u0434\u0430"],
+      ["\u0412\u0441\u0435 \u0431\u043E\u0441\u0441\u044B", "boss/", "\u{1F451}", "\u0431\u043E\u0441\u0441\u044B \u0431\u0430\u0448\u043D\u0438 \u0440\u0435\u0439\u0434\u044B"],
+      ["\u0412\u0441\u0435 \u043F\u0430\u0441\u0441\u0438\u0432\u043A\u0438", "passivki/", "\u2728", "\u043F\u0430\u0441\u0441\u0438\u0432\u043A\u0438"],
+      ["\u0415\u0434\u0430 \u0438 \u0431\u0430\u0444\u0444\u044B", "guide/eda/", "\u{1F372}", "\u0435\u0434\u0430 \u0431\u0430\u0444 \u0431\u0430\u0444\u0444 \u0431\u0430\u0444\u044B \u043F\u0438\u0446\u0446\u0430 \u0431\u043B\u044E\u0434\u043E \u0431\u043B\u044E\u0434\u0430 \u043A\u0443\u0445\u043D\u044F \u0433\u043E\u0442\u043E\u0432\u0438\u0442\u044C \u0441\u044B\u0442\u043E\u0441\u0442\u044C"]
+    ].filter((x) => x[1] != "2_mehaniki/rabota/").forEach(([l, u, i, a]) => add({ t: "page", label: l, alt: a, sub: "\u0440\u0430\u0437\u0434\u0435\u043B", ic: i, url: u, w: 1 }));
     return IDX;
   }
   const dl = (a, b) => {
@@ -119,7 +130,7 @@
       }, 120);
     };
     L.addEventListener("click", (e) => {
-      const b = e.target.closest(".pp");
+      const b = (e.target.closest?e.target:document.body).closest(".pp");
       if (!b) return;
       const p = D.pals.find((x) => x.id == b.dataset.id);
       close();
@@ -298,13 +309,13 @@
         if (SX.hidden) SXo();
       });
       body.addEventListener("click", (e) => {
-        const d = e.target.closest("[data-del]");
+        const d = (e.target.closest?e.target:document.body).closest("[data-del]");
         if (d) {
           LS.set("pw_recentq", recQ().filter((x) => x != d.dataset.del));
           draw();
           return;
         }
-        const q = e.target.closest("[data-q]");
+        const q = (e.target.closest?e.target:document.body).closest("[data-q]");
         if (q) {
           e.preventDefault();
           inp.value = q.dataset.q;
@@ -312,7 +323,7 @@
           inp.focus({ preventScroll: true });
           return;
         }
-        const a = e.target.closest("a");
+        const a = (e.target.closest?e.target:document.body).closest("a");
         if (a) pushQ(inp.value);
       });
       let sel = -1;
@@ -356,7 +367,7 @@
   }
   window.PW_search = openSearch;
   document.addEventListener("click", (e) => {
-    const l = e.target.closest('label[for=__search],.md-search__icon,[href="#search"],.md-search__input');
+    const l = (e.target.closest?e.target:document.body).closest('label[for=__search],.md-search__icon,[href="#search"],.md-search__input');
     if (!l) return;
     e.preventDefault();
     e.stopPropagation();
@@ -564,7 +575,7 @@
         n.textContent = "\u043D\u0430\u0439\u0434\u0435\u043D\u043E " + c;
       };
       f.addEventListener("click", (e) => {
-        const b = e.target.closest("button");
+        const b = (e.target.closest?e.target:document.body).closest("button");
         if (!b) return;
         if (b.dataset.rk != null) {
           rk = rk == b.dataset.rk ? null : b.dataset.rk;
@@ -630,7 +641,7 @@
         out.innerHTML = `<div class="bub me">${esc(raw)}</div>` + (best || ent ? `<div class="bub ai"><span class="ai-av">\u{1F411}</span><div>${best ? `<b>${esc(best.q)}</b><p>${kb(best.a)}</p>` : ""}${ent ? `<div class="sx-card">${ent}</div>` : ""}</div></div>` : `<div class="bub ai"><span class="ai-av">\u{1F411}</span><div><p>\u041F\u043E\u043A\u0430 \u043D\u0435 \u0437\u043D\u0430\u044E \u0442\u043E\u0447\u043D\u043E\u0433\u043E \u043E\u0442\u0432\u0435\u0442\u0430.</p><a class="md-button md-button--primary" href="https://t.me/PalGuideBot?start=ask" target="_blank" rel="noopener">\u0421\u043F\u0440\u043E\u0441\u0438\u0442\u044C \u0432 \u0431\u043E\u0442\u0435</a></div></div>`) + (rel.length ? `<div class="ask-chips rel">${rel.map((r) => `<button type="button" data-q="${esc(r)}">${esc(r)}</button>`).join("")}</div>` : "");
       };
       ask.addEventListener("click", (e) => {
-        const b = e.target.closest("[data-q]");
+        const b = (e.target.closest?e.target:document.body).closest("[data-q]");
         if (b) {
           inp.value = b.dataset.q;
           go();
@@ -666,7 +677,7 @@
       box.querySelector("[data-ig]").onclick = () => window.PW_ingame && window.PW_ingame(true);
       (info ? info.closest(".pal-hero") : bh).after(box);
       box.addEventListener("click", (e) => {
-        const b = e.target.closest("[data-q]");
+        const b = (e.target.closest?e.target:document.body).closest("[data-q]");
         if (b && window.PW_search) window.PW_search(b.dataset.q);
       });
     }
@@ -791,14 +802,19 @@
     const cur = document.body.getAttribute("data-md-color-scheme") == "default" ? "light" : "dark";
     const seg = (k, opts, v) => `<div class="seg" data-k="${k}">${opts.map(([a, t]) => `<button type="button" data-v="${a}" class="${a == v ? "on" : ""}">${t}</button>`).join("")}</div>`;
     p.innerHTML = `<h3>\u2699\uFE0F \u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438</h3><div class="row"><span>\u0422\u0435\u043C\u0430</span>${seg("th", [["dark", "\u{1F319} \u0422\u0451\u043C\u043D\u0430\u044F"], ["light", "\u2600\uFE0F \u0421\u0432\u0435\u0442\u043B\u0430\u044F"]], cur)}</div><div class="row"><span>\u041A\u0440\u0443\u043F\u043D\u044B\u0439 \u0442\u0435\u043A\u0441\u0442</span>${seg("fs", [["m", "\u0410"], ["l", "\u0410+"], ["xl", "\u0410++"]], S.fs)}</div><div class="row"><span>\u041F\u0440\u043E\u0441\u0442\u043E\u0439 \u0440\u0435\u0436\u0438\u043C</span>${seg("mode", [["full", "\u0412\u044B\u043A\u043B"], ["simple", "\u0412\u043A\u043B"]], S.mode)}</div><div class="row"><span>\u0420\u0435\u0436\u0438\u043C \xAB\u0412 \u0438\u0433\u0440\u0435\xBB</span><button type="button" class="md-button" data-ig>${document.documentElement.classList.contains("ingame") ? "\u0412\u044B\u043A\u043B\u044E\u0447\u0438\u0442\u044C" : "\u{1F3AE} \u0412\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u2014 \u044D\u043A\u0440\u0430\u043D \u043D\u0435 \u0433\u0430\u0441\u043D\u0435\u0442"}</button></div><button type="button" class="md-button" data-tour>\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u043E\u0431\u0443\u0447\u0435\u043D\u0438\u0435</button><button type="button" class="md-button md-button--primary" data-x>\u0413\u043E\u0442\u043E\u0432\u043E</button>`;
+    const esc2 = (e) => {
+      if (e.key == "Escape") close();
+    };
     const close = () => {
       p.remove();
       bg.remove();
+      document.removeEventListener("keydown", esc2);
     };
+    document.addEventListener("keydown", esc2);
     bg.onclick = close;
     document.body.append(bg, p);
     p.addEventListener("click", (e) => {
-      const b = e.target.closest("button");
+      const b = (e.target.closest?e.target:document.body).closest("button");
       if (!b) return;
       const sg = b.closest(".seg");
       if (sg) {
@@ -918,7 +934,7 @@
       pv.style.top = (y + 20 + pv.offsetHeight > innerHeight ? y - pv.offsetHeight - 12 : y + 16) + "px";
     });
   }
-  const tgt = (e) => e.target.closest && e.target.closest('article a[href*="/paly/"],article a[href*="/boss/"],article a.psv[data-psv],.sx a[href*="/paly/"]');
+  const tgt = (e) => e.target.closest && (e.target.closest?e.target:document.body).closest('article a[href*="/paly/"],article a[href*="/boss/"],article a.psv[data-psv],.sx a[href*="/paly/"]');
   document.addEventListener("mouseover", (e) => {
     if (!matchMedia("(hover:hover)").matches) return;
     const a = tgt(e);

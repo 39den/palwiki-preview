@@ -50,3 +50,20 @@ S.forEach(([s,t],i)=>{const e=d.querySelector('.md-content '+s);if(!e)return;e.i
 if(n.children.length<2)return;qa.after(n);
 const links=[...n.querySelectorAll('a')];if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.hash==='#'+x.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});links.forEach(l=>{const t=d.getElementById(l.hash.slice(1));t&&io.observe(t)})}}if(d.readyState=='complete')toc();else addEventListener('load',toc)})();
 ;(function(){const f=()=>{const q=document.getElementById('hsq');if(q&&q.hasAttribute('aria-expanded')&&!q.getAttribute('role'))q.setAttribute('role','combobox')};f();addEventListener('load',f)})();
+
+;(function(){const d=document,H=d.documentElement;if(!H.classList.contains('v27'))return;
+const base=(d.querySelector('link[href*="assets/v27/v27.css"]')||{}).href;if(!base)return;const G=base.replace(/v27\.css.*$/,'game/');
+const EL={neutral:'Neutral',fire:'Fire',water:'Water',grass:'Grass',electric:'Electric',ice:'Ice',ground:'Ground',dark:'Dark',dragon:'Dragon'};
+const ELR={'Нейтральный':'Neutral','Огонь':'Fire','Вода':'Water','Трава':'Grass','Молния':'Electric','Лёд':'Ice','Земля':'Ground','Тьма':'Dark','Дракон':'Dragon'};
+const WK={'Генерация энергии':'Generating_Electricity','Добыча':'Mining','Охлаждение':'Cooling','Полив':'Watering','Посев семян':'Planting','Разжигание огня':'Kindling','Рубка деревьев':'Lumbering','Ручная работа':'Handiwork','Сбор':'Gathering','Транспортировка':'Transporting','Фармацевтика':'Medicine_Production','Фермерство':'Farming'};
+const img=(n,a)=>{const i=d.createElement('img');i.className='v27g';i.src=G+n+'.webp';i.alt='';i.width=18;i.height=18;i.decoding='async';i.setAttribute('aria-hidden','true');return i};
+function go(root){root=root||d;
+ root.querySelectorAll('.el:not(.v27gd)').forEach(e=>{if(e.closest('.pal-card'))return;const m=(e.className.match(/el-([a-z]+)/)||[])[1];const n=EL[m]||ELR[e.textContent.trim()];if(!n)return;e.classList.add('v27gd');const dot=e.querySelector('i,.dot');e.insertBefore(img(n),e.firstChild)});
+ root.querySelectorAll('.works>span:not(.v27gd),.wbar>span:not(.v27gd)').forEach(e=>{if(e.closest('.pal-card'))return;const t=e.textContent.replace(/[\d\s]+$/,'').trim();const n=WK[t];if(!n)return;e.classList.add('v27gd');e.insertBefore(img(n),e.firstChild)});}
+const run=()=>{go();new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType==1)go(n)}).observe(d.body,{childList:true,subtree:true})};
+if(d.readyState!='loading')run();else d.addEventListener('DOMContentLoaded',run);})();
+
+;(function(){const d=document;if(!d.documentElement.classList.contains('v27'))return;const go=()=>{
+ d.querySelectorAll('.pal-info span,.pal-info div').forEach(e=>{if(e.children.length||e.closest('.pal-card'))return;const t=e.textContent;const m=t.match(/❤️\s*(\d+)\s*·\s*⚔️\s*(\d+)\s*·\s*🛡\uFE0F?\s*(\d+)/);if(m){e.innerHTML='<span class="v27stat"><i>HP</i><b>'+m[1]+'</b></span><span class="v27stat"><i>Атака</i><b>'+m[2]+'</b></span><span class="v27stat"><i>Защита</i><b>'+m[3]+'</b></span>'}});
+ d.querySelectorAll('.ux-h,.ux-panel h3,.ux-panel h2,.ux-palx h3,.ux-palx .ux-h').forEach(e=>{const w=d.createTreeWalker(e,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const v=n.nodeValue.replace(/^\s*[\p{Extended_Pictographic}\uFE0F\u200D]+\s*/u,'');if(v!==n.nodeValue){n.nodeValue=v;break}if(n.nodeValue.trim())break}});};
+if(d.readyState=='complete')setTimeout(go,50);else addEventListener('load',()=>setTimeout(go,50));})();

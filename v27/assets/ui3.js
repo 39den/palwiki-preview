@@ -56,7 +56,7 @@
     }).observe(x, { childList: true }));
     const br = document.getElementById("breed");
     if (br) br.addEventListener("click", (e) => {
-      const b = e.target.closest(".bshare");
+      const b = (e.target.closest?e.target:document.body).closest(".bshare");
       if (b) share(location.href, "\u0420\u0430\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u0435 \u2014 \u042D\u043D\u0446\u0438\u043A\u043B\u043E\u043F\u0435\u0434\u0438\u044F Palworld", b);
     });
     if (br) new MutationObserver(() => {
@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (full) full.href = base + "map/?pal=" + el.dataset.pal + (w == "t" ? "&w=tree" : "") + (tod == "n" ? "&t=n" : "");
       }
       el.addEventListener("click", (e) => {
-        const b = e.target.closest("button");
+        const b = (e.target.closest?e.target:document.body).closest("button");
         if (!b) return;
         if (b.dataset.z != null) {
           const z = +b.dataset.z;
@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const pt = (t, r) => ({ x: t.clientX - r.left, y: t.clientY - r.top });
       let g = null, tap = null;
       bx.addEventListener("touchstart", (e) => {
-        if (e.target.closest(".hm-zc")) return;
+        if ((e.target.closest?e.target:document.body).closest(".hm-zc")) return;
         const r = bx.getBoundingClientRect();
         cancelAnimationFrame(anim);
         if (e.touches.length >= 2) {
@@ -490,7 +490,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, { passive: false });
       let md = null;
       bx.addEventListener("pointerdown", (e) => {
-        if (e.pointerType != "mouse" || e.button || e.target.closest(".hm-zc")) return;
+        if (e.pointerType != "mouse" || e.button || (e.target.closest?e.target:document.body).closest(".hm-zc")) return;
         md = { x: e.clientX, y: e.clientY, tx0: tx, ty0: ty };
         bx.setPointerCapture(e.pointerId);
         bx.classList.add("drag");
@@ -601,7 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cnt[p.t] = (cnt[p.t] || 0) + 1;
         groups[p.t] = groups[p.t] || dc.group(p.t);
         const nm = p.n;
-        dc.add(L.marker(ll(p.x, p.y), { icon: MI.icon(p.t), title: nm, riseOnHover: true }).bindPopup(() => window.PW_pop({ t: p.t, name: nm, lvl: p.lv, kind: t[0] + " " + t[1] }), MI.POP), p.t);
+        dc.add(L.marker(ll(p.x, p.y), { icon: MI.icon(p.t, 0, nm), title: nm, riseOnHover: true }).bindPopup(() => window.PW_pop({ t: p.t, name: nm, lvl: p.lv, kind: t[0] + " " + t[1] }), MI.POP), p.t);
       });
       lay.onAdd = () => {
         const d = L.DomUtil.create("div", "mleg");
@@ -651,7 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const add = (M, ll, pts, al, dc) => {
         const g = [];
         pts.forEach((p) => g.push(dc.add(L.marker(ll(p[0], p[1]), { icon: MI.icon("hab", 22), title: nm, riseOnHover: true }).bindPopup(() => window.PW_pop({ t: "hab", name: nm, sub: (tod == "n" ? "\u041D\u043E\u0447\u044C\u044E" : "\u0414\u043D\u0451\u043C") + (p[2] ? " \xB7 \u0443\u0440. " + p[2] : "") }), MI.POP), "hab", 22, 4)));
-        (al || []).forEach((p) => g.push(dc.add(L.marker(ll(p[0], p[1]), { icon: MI.icon("alpha", 32), title: nm, riseOnHover: true }).bindPopup(() => window.PW_pop({ t: "alpha", name: nm, kind: "\u{1F451} \u0410\u043B\u044C\u0444\u0430" }), MI.POP), "alpha", 32, 6)));
+        (al || []).forEach((p) => g.push(dc.add(L.marker(ll(p[0], p[1]), { icon: MI.icon("alpha", 34, nm), title: nm, riseOnHover: true }).bindPopup(() => window.PW_pop({ t: "alpha", name: nm, kind: "\u{1F451} \u0410\u043B\u044C\u0444\u0430" }), MI.POP), "alpha", 32, 6)));
         const b = pts.concat(al || []);
         if (b.length) M.m.fitBounds(L.latLngBounds(b.map((p) => ll(p[0], p[1]))).pad(0.3), { maxZoom: 4, animate: false });
         M.m.closePopup();
@@ -753,7 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
     history.replaceState(null, "", (p + "" ? "?" + p : location.pathname) + location.hash);
   };
   F.addEventListener("click", (e) => {
-    const b = e.target.closest(".fc");
+    const b = (e.target.closest?e.target:document.body).closest(".fc");
     if (!b) return;
     const gk = b.dataset.g;
     st[gk] = st[gk] == b.dataset.v && b.dataset.v ? "" : b.dataset.v;
@@ -813,7 +813,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 document.addEventListener("click", (e) => {
-  const b = e.target.closest("#bfl .fcs .fc");
+  const b = (e.target.closest?e.target:document.body).closest("#bfl .fcs .fc");
   if (!b) return;
   const row = b.closest(".fcs"), sel = document.getElementById(row.dataset.s);
   if (!sel) return;
@@ -879,7 +879,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener("focusin", (e) => _noAF(e.target), true);
 document.addEventListener("click", (e) => {
-  const b = e.target.closest && e.target.closest(".pflip");
+  const b = e.target.closest && (e.target.closest?e.target:document.body).closest(".pflip");
   if (!b) return;
   const w = b.closest(".pcardwrap");
   const c = w.querySelector(".tcard26"), r = w.querySelector(".pal-art2");

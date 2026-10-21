@@ -116,7 +116,7 @@
     new MutationObserver(inject).observe(body, { childList: true });
     inject();
     sx.addEventListener("click", (e) => {
-      const b = e.target.closest("[data-tq]");
+      const b = (e.target.closest?e.target:document.body).closest("[data-tq]");
       if (!b) return;
       e.preventDefault();
       e.stopPropagation();
@@ -201,7 +201,7 @@
     addEventListener("pagehide", save);
     document.addEventListener("visibilitychange", () => document.visibilityState == "hidden" && save());
     document.addEventListener("click", (e) => {
-      const a = e.target.closest("a[href]");
+      const a = (e.target.closest?e.target:document.body).closest("a[href]");
       if (a) save();
     }, true);
     let h = SS.get("ux_hist", []).filter((x) => x.u != u);
@@ -239,7 +239,7 @@
     });
   }
   window.addEventListener("click", (e) => {
-    const b = e.target.closest && e.target.closest(".hlp");
+    const b = e.target.closest && (e.target.closest?e.target:document.body).closest(".hlp");
     if (b && matchMedia("(hover:hover)").matches && document.querySelector(".hlp-pop")) {
       e.preventDefault();
       e.stopPropagation();
@@ -315,7 +315,7 @@
       pop = null;
     };
     document.addEventListener("click", (e) => {
-      const b = e.target.closest(".ux-term");
+      const b = (e.target.closest?e.target:document.body).closest(".ux-term");
       if (!b) {
         close();
         return;
@@ -352,7 +352,7 @@
     };
     draw();
     q.addEventListener("click", (e) => {
-      const b = e.target.closest("button");
+      const b = (e.target.closest?e.target:document.body).closest("button");
       if (!b) return;
       if (b.dataset.a == "set") {
         window.PW_settings && window.PW_settings();
@@ -427,7 +427,7 @@
       p.innerHTML = `<div class="ux-ic">${cards.map(([e, t, d], k) => `<div class="ux-icard ${k == i ? "on" : ""}" aria-hidden="${k != i}"><div class="ux-big">${e}</div><h3>${t}</h3><p>${d}</p></div>`).join("")}</div><div class="ux-dots">${cards.map((_, k) => `<button type="button" class="${k == i ? "on" : ""}" data-k="${k}" aria-label="\u041A\u0430\u0440\u0442\u043E\u0447\u043A\u0430 ${k + 1}"></button>`).join("")}</div><div class="ux-row"><button type="button" class="ux-btn ghost" data-s>\u041F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u044C</button><button type="button" class="ux-btn" data-n>${i < 2 ? "\u0414\u0430\u043B\u044C\u0448\u0435 \u2192" : "\u041D\u0430\u0447\u0430\u0442\u044C!"}</button></div>`;
     };
     p.addEventListener("click", (e) => {
-      const b = e.target.closest("button");
+      const b = (e.target.closest?e.target:document.body).closest("button");
       if (!b) return;
       if (b.hasAttribute("data-s")) return close();
       if (b.hasAttribute("data-n")) {
@@ -498,7 +498,7 @@
     };
     draw();
     row.addEventListener("click", (e) => {
-      const b = e.target.closest("button");
+      const b = (e.target.closest?e.target:document.body).closest("button");
       if (!b) return;
       if (b.dataset.l) {
         const on = toggleList(b.dataset.l, id);

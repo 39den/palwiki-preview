@@ -2,15 +2,84 @@
   const B = () => window.PW_BASE || "/palwiki-preview/v27/";
   const I = { travel: ["travel.webp", "#2ec4b6", 3], tower: ["tower.webp", "#b07cff", 3], alpha: ["alpha.webp", "#ff6b5a", 2], sealed: ["sealed.svg", "#4aa3ff", 2], dungeon: ["dungeon.webp", "#e0b04a", 2], watch: ["watch.webp", "#8fb3c9", 1], npc: ["npc.webp", "#36bb91", 1], merchant: ["merchant.webp", "#36bb91", 1], chest: ["chest.svg", "#f0c45a", 0], fruit: ["fruit.svg", "#7bd389", 0], spring: ["spring.svg", "#5fb4ff", 0], fish: ["fish.webp", "#5fb4ff", 0], ore: ["ore.webp", "#c9c9c9", 0], effigy: ["effigy.svg", "#9fe870", 0], hab: ["hab.webp", "#ffd34d", 1] };
   const v = (t) => I[t] || I.hab;
-  const icon = (t, sz) => {
-    sz = sz || 28;
-    return L.divIcon({ className: "gmk gmk-" + t, html: `<i style="--c:${v(t)[1]};width:${sz}px;height:${sz}px"><img src="${B()}assets/mapicons/${v(t)[0]}" alt="" draggable="false"></i>`, iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -sz / 2] });
+  const face = (n) => {
+    const P = (window.PW_D || {}).pals || [];
+    const q = P.find((p) => p.ru == n) || P.find((p) => p.en == n);
+    return q && q.thumb ? B() + q.thumb : "";
   };
-  const leg = (t) => `<i class="gmk-l" style="--c:${v(t)[1]}"><img src="${B()}assets/mapicons/${v(t)[0]}" alt=""></i>`;
+  const icon = (t, sz, nm) => {
+    sz = sz || 28;
+    const f = t == "alpha" && nm ? face(nm) : "";
+    if (f) sz = Math.max(sz, 34);
+    return L.divIcon({ className: "gmk gmk-" + t + (f ? " gmk-face" : ""), html: `<i style="--c:${v(t)[1]};width:${sz}px;height:${sz}px"><img src="${f || B() + "assets/mapicons/" + v(t)[0]}" alt="" draggable="false"></i>`, iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -sz / 2] });
+  };
+  const leg = (t) => {
+    if (t == "alpha") {
+      const f = face("\u0427\u0438\u043B\u043B\u0435\u0442") || face("Chillet");
+      if (f) return `<i class="gmk-l gmk-lf"><img src="${f}" alt=""></i>`;
+    }
+    return `<i class="gmk-l" style="--c:${v(t)[1]}"><img src="${B()}assets/mapicons/${v(t)[0]}" alt=""></i>`;
+  };
   const POP = { maxWidth: 280, minWidth: 220, autoPan: true, autoPanPaddingTopLeft: [12, 72], autoPanPaddingBottomRight: [12, 24] };
+  window.PW_maps = window.PW_maps || [];
+  if (!window.PW_escG) {
+    window.PW_escG = 1;
+    document.addEventListener("keydown", (e) => {
+      if (e.key != "Escape") return;
+      (window.PW_maps || []).forEach((m) => m.closePopup());
+      document.querySelectorAll(".lbx").forEach((x) => x.remove());
+      const d = document.getElementById("__drawer");
+      if (d && d.checked) {
+        d.checked = false;
+        d.dispatchEvent(new Event("change"));
+      }
+    });
+    document.addEventListener("pointerdown", (e) => {
+      (window.PW_maps || []).forEach((m) => {
+        const c = m.getContainer();
+        if (!c.contains(e.target) && !(e.target.closest && (e.target.closest?e.target:document.body).closest(".leaflet-popup"))) m.closePopup();
+      });
+    }, true);
+  }
   function fit(m) {
+    window.PW_maps.push(m);
     m.on("popupopen", (e) => {
       const pp = e.popup;
+      const fx = () => {
+        if (!pp.isOpen()) return;
+        const el = pp.getElement();
+        if (!el) return;
+        const r = el.getBoundingClientRect(), mr = m.getContainer().getBoundingClientRect();
+        const lo = Math.max(mr.left, 0), hi = Math.min(mr.right, innerWidth), tp = Math.max(mr.top, 0), bt = Math.min(mr.bottom, innerHeight);
+        let dx = 0, dy = 0;
+        if (r.left < lo + 6) dx = r.left - lo - 6;
+        else if (r.right > hi - 6) dx = r.right - hi + 6;
+        if (r.bottom > bt - 6) dy = r.bottom - bt + 6;
+        else if (r.top < tp + 6) dy = r.top - tp - 6;
+        if (dx || dy) m.panBy([dx, dy], { animate: false });
+        {
+          const r3 = el.getBoundingClientRect();
+          let ex = 0;
+          if (r3.left < lo + 6) ex = lo + 6 - r3.left;
+          else if (r3.right > hi - 6) ex = hi - 6 - r3.right;
+          if (ex) {
+            const of = L.point(pp.options.offset || [0, 7]);
+            pp.options.offset = L.point(of.x + ex, of.y);
+            pp.update();
+            const t = el.querySelector(".leaflet-popup-tip-container");
+            if (t) t.style.marginLeft = -20 - ex + "px";
+          }
+        }
+      };
+      setTimeout(fx, 60);
+      setTimeout(fx, 200);
+      setTimeout(fx, 450);
+      setTimeout(fx, 900);
+      setTimeout(fx, 1500);
+      setTimeout(() => {
+        const el = pp.getElement();
+        el && el.querySelectorAll("img").forEach((i) => i.complete || i.addEventListener("load", fx, { once: true }));
+      }, 0);
       requestAnimationFrame(() => {
         const el = pp.getElement();
         if (!el) return;
@@ -22,9 +91,10 @@
           pp.update();
         }
         const r2 = el.getBoundingClientRect();
+        const lo = Math.max(mr.left, 0), hi = Math.min(mr.right, innerWidth);
         let dx = 0;
-        if (r2.left < mr.left + 6) dx = r2.left - mr.left - 6;
-        else if (r2.right > mr.right - 6) dx = r2.right - mr.right + 6;
+        if (r2.left < lo + 6) dx = r2.left - lo - 6;
+        else if (r2.right > hi - 6) dx = r2.right - hi + 6;
         if (dx) m.panBy([dx, 0], { animate: false });
       });
     });
@@ -291,7 +361,7 @@ window.PW_pop = function(o) {
     const all = [];
     Object.keys(T).forEach((k) => groups[k] = dc.group(k));
     D.map.forEach((p) => {
-      const mk = L.marker(ll(p.x, p.y), { icon: MI.icon(p.t), title: p.name, riseOnHover: true }).bindPopup(() => window.PW_pop({ t: p.t, name: p.name, lvl: p.lvl, info: p.info, url: p.url, kind: T[p.t][0] + " " + (p.info || T[p.t][1]), sub: "X " + Math.round(p.x) + " \xB7 Y " + Math.round(p.y) }), MI.POP);
+      const mk = L.marker(ll(p.x, p.y), { icon: MI.icon(p.t, 0, p.name), title: p.name, riseOnHover: true }).bindPopup(() => window.PW_pop({ t: p.t, name: p.name, lvl: p.lvl, info: p.info, url: p.url, kind: T[p.t][0] + " " + (p.info || T[p.t][1]), sub: "X " + Math.round(p.x) + " \xB7 Y " + Math.round(p.y) }), MI.POP);
       dc.add(mk, p.t);
       all.push([p, mk]);
     });
@@ -544,7 +614,7 @@ window.PW_pop = function(o) {
     if (e.key == "Escape") close();
   });
   document.addEventListener("click", (e) => {
-    const a = e.target.closest("a.psv[data-psv]");
+    const a = (e.target.closest?e.target:document.body).closest("a.psv[data-psv]");
     if (!a || e.metaKey || e.ctrlKey) return;
     e.preventDefault();
     window.PW_data().then((D) => {

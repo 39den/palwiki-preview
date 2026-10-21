@@ -1,0 +1,37 @@
+/* v27 game layer — Palworld-like UI: navy glass panels, cyan rim, gold accents, rounded heading font, element/work icons */
+@font-face{font-family:"PalHead";src:url(fonts/Nunito-800-cyrillic.woff2) format("woff2");font-weight:800;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"PalHead";src:url(fonts/Nunito-800-latin.woff2) format("woff2");font-weight:800;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F}
+html.v27{--g-cyan:#35d6f0;--g-gold:#f3c54b;--g-rim:color-mix(in srgb,var(--g-cyan) 28%,transparent)}
+html.v27 [data-md-color-scheme=slate]{--v-acc:#35d6f0}
+html.v27 .md-typeset h1,html.v27 .md-typeset h2,html.v27 .hero-in h1,html.v27 .pp-brand{font-family:"PalHead",Unbounded,system-ui,sans-serif!important;font-weight:800!important;letter-spacing:-.01em!important}
+/* background motif: faint Palpagos silhouette + soft grid, dark theme only */
+html.v27 [data-md-color-scheme=slate] .md-container{background:
+  radial-gradient(1200px 600px at 85% -10%,rgba(53,214,240,.08),transparent 60%),
+  radial-gradient(900px 500px at -10% 110%,rgba(243,197,75,.05),transparent 60%)}
+html.v27 [data-md-color-scheme=slate] body::before{content:"";position:fixed;inset:auto -120px -160px auto;width:620px;height:620px;background:url(game/palpagos.webp) center/contain no-repeat;opacity:.05;filter:grayscale(1) brightness(1.6);pointer-events:none;z-index:-1}
+html.v27 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(127,160,190,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(127,160,190,.045) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 0%,transparent 70%)}
+/* in-game panels: thin cyan rim, inner highlight, rounded */
+html.v27 [data-md-color-scheme=slate] .tile,html.v27 [data-md-color-scheme=slate] .ux-tile,html.v27 [data-md-color-scheme=slate] .ux-act,html.v27 [data-md-color-scheme=slate] .ux-panel,html.v27 [data-md-color-scheme=slate] .potd,html.v27 [data-md-color-scheme=slate] .v27panel,html.v27 [data-md-color-scheme=slate] .v27-toc,html.v27 [data-md-color-scheme=slate] .ux-palx,html.v27 [data-md-color-scheme=slate] .itg{background:linear-gradient(180deg,rgba(28,44,62,.72),rgba(16,26,38,.72))!important;border:1px solid var(--g-rim)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 6px 20px rgba(0,0,0,.25)!important}
+html.v27 [data-md-color-scheme=slate] .tile:hover,html.v27 [data-md-color-scheme=slate] .ux-act:hover{border-color:color-mix(in srgb,var(--g-cyan) 70%,transparent)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 0 1px rgba(53,214,240,.25),0 8px 24px rgba(0,0,0,.3)!important}
+html.v27 [data-md-color-scheme=slate] .tile .ti{background:radial-gradient(circle at 50% 35%,rgba(53,214,240,.28),rgba(53,214,240,.08))!important;box-shadow:inset 0 0 0 1px rgba(53,214,240,.35);color:#bff3ff!important}
+/* light theme: parchment-ish panels with teal rim */
+html.v27 [data-md-color-scheme=default] .tile,html.v27 [data-md-color-scheme=default] .ux-act,html.v27 [data-md-color-scheme=default] .potd{border:1px solid rgba(14,116,144,.22)!important;box-shadow:inset 0 1px 0 #fff,0 4px 14px rgba(14,60,80,.06)!important}
+/* section headings: game-like gold tick */
+html.v27 .md-typeset h2{position:relative;padding-left:14px!important}
+html.v27 .md-typeset h2::before{content:"";position:absolute;left:0;top:.28em;width:4px;height:.9em;border-radius:2px;background:linear-gradient(var(--g-gold),#e0912b)}
+/* level/version badge like in-game plate */
+html.v27 .ux-ver{border:1px solid rgba(243,197,75,.45)!important;background:rgba(243,197,75,.10)!important}
+/* element & work icons */
+html.v27 .v27g{width:18px;height:18px;vertical-align:-4px;margin-right:6px;flex:none;image-rendering:auto}
+html.v27 .el .v27g{margin-right:4px}
+html.v27 .works .v27g{width:20px;height:20px}
+html.v27 .potd .v27g,html.v27 .el .v27g{width:18px!important;height:18px!important;max-width:18px!important}
+html.v27 .el.v27gd::before{display:none!important}
+html.v27 .v27stat{display:inline-flex;align-items:center;gap:4px;margin-right:10px;font-variant-numeric:tabular-nums}
+html.v27 .v27stat i{font-style:normal;font-size:12px;letter-spacing:.04em;color:var(--v-mute);text-transform:uppercase}
+@media (min-width:1024px) and (max-height:760px){html.v27 body.pp-home .bento2 .potd{padding:8px 12px!important}}
+html.v27 .potd .el,html.v27 .el.v27gd{display:inline-flex!important;align-items:center;gap:2px;width:auto!important;height:auto!important;min-height:0!important;border-radius:999px!important;padding:3px 10px 3px 6px!important;line-height:1.3!important}
+html.v27 body.pp-home .bento2 .potd img.v27g,html.v27 body.pp-home .potd img.v27g{width:18px!important;height:18px!important}
+html.v27:has(body[data-md-color-scheme=slate]){background:#0b1118}
+html.v27 body[data-md-color-scheme=slate]{background:transparent!important}
+html.v27 body[data-md-color-scheme=slate] .md-container,html.v27 body[data-md-color-scheme=slate] .md-main{background-color:transparent!important}

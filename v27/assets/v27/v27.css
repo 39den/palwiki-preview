@@ -224,3 +224,14 @@ html.v27 [data-md-color-scheme=default] .v27panel{background:rgba(255,255,255,.8
 html.v27 body.pp-home .tile small{font-size:13px!important;color:#56626e!important}
 html.v27 [data-md-color-scheme=slate] body.pp-home .tile small,html.v27 body.pp-home[data-md-color-scheme=slate] .tile small{color:#a3b0bd!important}
 @media (min-width:1024px){html.v27 body.pp-home .md-content__inner{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}html.v27 body.pp-home .md-content__inner>.bento2{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}}
+/* r8 autorun fixes */
+html.v27 .md-typeset .hlp,html.v27 .md-typeset button.hlp,html.v27 [id^=t] .hlp{color:var(--v-fg)!important;background:var(--v-surf)!important;border:1px solid var(--v-line)!important;opacity:1!important}
+html.v27 select optgroup{color:#0f1720;background:#fff;font-weight:700}
+html.v27 [data-md-color-scheme=slate] select optgroup{color:#e8eef5;background:#16202b}
+html.v27 [data-md-color-scheme=slate] select option{color:#e8eef5;background:#16202b}
+html.v27 [data-md-color-scheme=default] .md-nav__link,html.v27 [data-md-color-scheme=default] .md-nav__item--active>.md-nav__link{color:#1b2733!important;opacity:1!important}
+html.v27 [data-md-color-scheme=default] .md-nav__link--active{color:#0b6b78!important}
+html.v27 .leaflet-popup-close-button{width:40px!important;height:40px!important;font-size:22px!important;line-height:40px!important;color:var(--v-fg)!important;opacity:1!important;top:2px!important;right:2px!important}
+@media (max-width:600px){html.v27 .leaflet-popup-content-wrapper{max-width:calc(100vw - 32px)!important;max-height:60vh;overflow:auto}html.v27 .leaflet-popup-content{max-width:calc(100vw - 64px)!important;width:auto!important}}
+html.v27 .leaflet-popup-content-wrapper,html.v27 .leaflet-popup-tip{background:var(--v-surf)!important;color:var(--v-fg)!important}
+.v27-skip{background:#0b6b78!important;color:#fff!important}
