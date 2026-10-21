@@ -221,3 +221,6 @@ html.v27 .ux-chip.on{background:#d9eef0!important;color:#0f1720!important}
 html.v27 [data-md-color-scheme=slate] .ux-chip.on{background:#173a40!important;color:#e8eef5!important}
 @media (min-width:1024px) and (max-height:760px){html.v27 body.pp-home .tile{padding:8px 12px!important}html.v27 body.pp-home .tiles{gap:8px!important}}
 html.v27 [data-md-color-scheme=default] .v27panel{background:rgba(255,255,255,.88)!important}
+html.v27 body.pp-home .tile small{font-size:13px!important;color:#56626e!important}
+html.v27 [data-md-color-scheme=slate] body.pp-home .tile small,html.v27 body.pp-home[data-md-color-scheme=slate] .tile small{color:#a3b0bd!important}
+@media (min-width:1024px){html.v27 body.pp-home .md-content__inner{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}html.v27 body.pp-home .md-content__inner>.bento2{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}}

@@ -10,8 +10,8 @@ function strip(el,icon){const w=d.createTreeWalker(el,NodeFilter.SHOW_TEXT);let 
 
 const TX=[["Энциклопедия Palworld","Твой проводник по Палпагосу","h1"],
 ["Всё о Palworld на русском: уровни 0–80, 299 палов, 1599 предметов, боссы, пассивки, разведение и секреты.","299 палов, боссы, разведение и тайники — коротко и по-русски."],
-["двух палов рядом","бок о бок"],["с 1 до 80 уровня","по шагам до финала"],["лучшие наборы","что кому ставить"],["пасхалки и тайники","то, что легко пропустить"],
-["где взять и крафт","добыча и крафт"],["калькулятор пар","кто с кем даст нужного"],["блюда, баффы, кухни","что поесть перед боем"],
+["двух палов рядом","бок о бок"],["с 1 до 80 уровня","по шагам до финала"],["лучшие наборы","что кому ставить"],["пасхалки и тайники","что легко пропустить"],
+["где взять и крафт","добыча и крафт"],["калькулятор пар","кто с кем"],["блюда, баффы, кухни","еда перед боем"],
 ["Открой пару палов — они появятся здесь.","Здесь появятся палы, которых ты смотрел."],["Нажми ☆ на странице пала.","Отмечай палов ☆ — они соберутся здесь."],
 ["Сообщить об ошибке","Нашёл ошибку? Напиши"],["Что дальше?","Куда дальше"],["Скрыть, где был","Скрыть посещённые"],
 ["Что делать на моём уровне","Что делать на моём уровне"],["404 - Not found","Такой страницы нет"],["Спросить","Поиск"],
@@ -49,3 +49,4 @@ const n=d.createElement('nav');n.className='v27-toc';n.setAttribute('aria-label'
 S.forEach(([s,t],i)=>{const e=d.querySelector('.md-content '+s);if(!e)return;e.id=e.id||'s-'+i;e.style.scrollMarginTop='120px';const a=d.createElement('a');a.href='#'+e.id;a.textContent=t;n.appendChild(a)});
 if(n.children.length<2)return;qa.after(n);
 const links=[...n.querySelectorAll('a')];if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.hash==='#'+x.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});links.forEach(l=>{const t=d.getElementById(l.hash.slice(1));t&&io.observe(t)})}}if(d.readyState=='complete')toc();else addEventListener('load',toc)})();
+;(function(){const f=()=>{const q=document.getElementById('hsq');if(q&&q.hasAttribute('aria-expanded')&&!q.getAttribute('role'))q.setAttribute('role','combobox')};f();addEventListener('load',f)})();
