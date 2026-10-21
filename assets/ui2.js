@@ -141,7 +141,7 @@
     w = document.createElement("div");
     w.id = "hsx";
     w.className = "hsx";
-    w.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="hsq" name="pp-site-q" type="search" placeholder="\u041F\u0430\u043B, \u0431\u043E\u0441\u0441 \u0438\u043B\u0438 \u0432\u043E\u043F\u0440\u043E\u0441" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="\u041F\u043E\u0438\u0441\u043A" aria-controls="sxp" aria-expanded="false"><button type="button" class="sx-clr" aria-label="\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C" hidden>\xD7</button>';
+    w.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="hsq" name="pp-site-q" type="search" placeholder="' + (innerWidth < 480 ? "\u041F\u0430\u043B, \u0431\u043E\u0441\u0441\u2026" : "\u041F\u0430\u043B, \u0431\u043E\u0441\u0441 \u0438\u043B\u0438 \u0432\u043E\u043F\u0440\u043E\u0441") + '" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="\u041F\u043E\u0438\u0441\u043A" aria-controls="sxp" aria-expanded="false"><button type="button" class="sx-clr" aria-label="\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C" hidden>\xD7</button>';
     const t = hd.querySelector(".md-header__title");
     (t || hd.lastChild).after(w);
     return w.querySelector("input");
@@ -178,7 +178,7 @@
       const ex = ["\u043A\u0442\u043E \u043B\u0443\u0447\u0448\u0435 \u043A\u043E\u043F\u0430\u0435\u0442", "\u0447\u0435\u043C \u0431\u0438\u0442\u044C \u0437\u043E\u0438", "\u0433\u0434\u0435 \u0432\u0437\u044F\u0442\u044C \u0441\u0435\u0440\u0443", "\u043F\u0430\u0441\u0441\u0438\u0432\u043A\u0438 \u0444\u0440\u043E\u0441\u0442\u0430\u043B\u0438\u043E\u043D \u0431\u043E\u0435\u0446", "\u043A\u0430\u043A \u0432\u044B\u0432\u0435\u0441\u0442\u0438 \u0430\u043D\u0443\u0431\u0438\u0441\u0430", "\u0441\u0440\u0430\u0432\u043D\u0438\u0442\u044C \u0430\u043D\u0443\u0431\u0438\u0441 \u0438 \u0434\u0436\u0435\u0442\u0440\u0430\u0433\u043E\u043D"];
       const empty = () => `${recQ().length ? `<div class="sx-h">\u041D\u0435\u0434\u0430\u0432\u043D\u0438\u0435</div><div class="sx-chips">${recQ().map((q) => `<span class="sx-c"><button type="button" data-q="${esc(q)}">\u{1F558} ${esc(q)}</button><button type="button" class="sx-del" data-del="${esc(q)}" aria-label="\u0423\u0434\u0430\u043B\u0438\u0442\u044C">\xD7</button></span>`).join("")}</div>` : ""}
   ${pop.length ? `<div class="sx-h">\u041F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0435</div><div class="sx-chips">${pop.map((p) => `<a class="sx-c sx-p" href="${B + p.url}"><img src="${B + p.thumb}" width="22" height="22" alt="">${esc(p.ru)}</a>`).join("")}</div>` : ""}
-  <div class="sx-h">\u0420\u0430\u0437\u0434\u0435\u043B\u044B</div><div class="sx-tiles">${tiles.map(([i, l, u]) => `<a href="${B + u}"><span>${i}</span>${l}</a>`).join("")}</div>
+  ${document.getElementById("pwmap") ? "" : `<div class="sx-h">\u0420\u0430\u0437\u0434\u0435\u043B\u044B</div><div class="sx-tiles">${tiles.map(([i, l, u]) => `<a href="${B + u}"><span>${i}</span>${l}</a>`).join("")}</div>`}
   <div class="sx-h">\u041C\u043E\u0436\u043D\u043E \u0441\u043F\u0440\u043E\u0441\u0438\u0442\u044C</div><div class="sx-chips">${ex.map((q) => `<button type="button" class="sx-c" data-q="${esc(q)}">${esc(q)}</button>`).join("")}</div>`;
       SX.innerHTML = `<button type="button" class="sx-x" aria-label="\u0417\u0430\u043A\u0440\u044B\u0442\u044C">\xD7</button><div class="sx-body">${empty()}</div>`;
       document.body.appendChild(SX);
@@ -639,6 +639,15 @@
       document.getElementById("asks").onclick = go;
       inp.addEventListener("keydown", (e) => {
         if (e.key == "Enter") go();
+      });
+      let _at;
+      inp.addEventListener("input", () => {
+        clearTimeout(_at);
+        if (inp.value.trim().length < 2) {
+          out.innerHTML = "";
+          return;
+        }
+        _at = setTimeout(go, 250);
       });
       const u = new URLSearchParams(location.search).get("ask");
       if (u) {

@@ -833,3 +833,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!i.name) i.name = "pp-q-" + (i.id || i.className.split(" ")[0] || "f");
   });
 });
+document.addEventListener("click", (e) => {
+  const b = e.target.closest && e.target.closest(".pflip");
+  if (!b) return;
+  const w = b.closest(".pcardwrap");
+  const c = w.querySelector(".tcard"), r = w.querySelector(".pal-art2");
+  if (!c || !r) return;
+  const on = b.getAttribute("aria-pressed") != "true";
+  c.hidden = on;
+  r.hidden = !on;
+  b.setAttribute("aria-pressed", on);
+  b.textContent = on ? "\u{1F0CF} \u041A\u0430\u0440\u0442\u043E\u0447\u043A\u0430" : "\u{1F504} 3D-\u043C\u043E\u0434\u0435\u043B\u044C";
+});
+(() => {
+  const H = document.documentElement;
+  const isT = (e) => e && e.matches && e.matches("input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=button]),textarea,select");
+  document.addEventListener("focusin", (e) => {
+    if (isT(e.target)) {
+      H.classList.add("kbopen");
+      H.classList.toggle("hsqf", e.target.id == "hsq");
+    }
+  });
+  document.addEventListener("focusout", () => setTimeout(() => {
+    const a = document.activeElement;
+    if (!isT(a)) {
+      H.classList.remove("kbopen", "hsqf");
+    } else H.classList.toggle("hsqf", a.id == "hsq");
+  }, 60));
+})();

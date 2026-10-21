@@ -787,3 +787,13 @@ html.ux-sxon .inst{display:none!important}
 .md-typeset details.itm>summary.itl::before,.md-typeset details.itm>summary.itl::after{display:none!important;content:none!important}
 .md-typeset details.itm>summary.itl::-webkit-details-marker{display:none}
 .md-typeset details.itm:focus-within{box-shadow:var(--sh1),inset 0 0 0 2px var(--rc)}
+/* restored trading card (first face) + optional 3D render behind a flip button */
+.pcardwrap{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
+.pal-hero .pal-card.tcard{width:min(340px,88%)!important;max-width:340px;height:auto;max-height:none;aspect-ratio:520/728;-o-object-fit:contain;object-fit:contain;border-radius:14px;box-shadow:0 8px 22px rgba(0,0,0,.3);background:none}
+@media (max-width:700px){.pal-hero .pal-card.tcard{width:min(320px,82vw)!important}}
+.pal-hero .pal-art2{width:min(340px,88%);height:auto;aspect-ratio:1;-o-object-fit:contain;object-fit:contain;filter:drop-shadow(0 18px 24px rgba(0,0,0,.35))}
+.pal-art2[hidden],.pal-card.tcard[hidden]{display:none!important}
+.pflip{font:inherit;font-size:.72rem;font-weight:700;padding:6px 14px;min-height:36px;border-radius:99px;border:1px solid var(--line);background:var(--surf);color:var(--txt);cursor:pointer}
+.pflip[aria-pressed=true]{background:var(--surf2)}
+@media (max-width:76.234375em){html.kbopen .tabbar{display:none!important}html.kbopen.hsqf .msheet{display:none!important}
+body:has(#pwmap) #sxp{max-height:42vh;overflow:auto}}

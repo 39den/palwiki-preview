@@ -977,8 +977,10 @@
       l.href = u;
       document.head.appendChild(l);
     });
-    const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1200));
-    idle(() => urls.forEach((u) => fetch(u, { credentials: "same-origin" }).then((r) => r.text()).then((t) => {
+    const _ac = window.AbortController ? new AbortController() : null;
+    addEventListener("pagehide", () => _ac && _ac.abort());
+    addEventListener("beforeunload", () => _ac && _ac.abort());
+    if (window.requestIdleCallback) requestIdleCallback(() => urls.forEach((u) => fetch(u, { credentials: "same-origin", signal: _ac && _ac.signal }).then((r) => r.text()).then((t) => {
       const m = t.match(/class="pal-card[^"]*" src="([^"]+)"/);
       if (m) {
         const im = new Image();

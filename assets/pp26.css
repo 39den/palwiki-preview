@@ -227,3 +227,6 @@ html.pp26:not(.pp-ready) .md-main{visibility:hidden}
 @media (max-width:600px){html.pp26 .pal-hero .pal-art{max-height:230px;width:auto;max-width:70%;margin:0 auto;display:block;object-fit:contain}}
 /* deep-linked item card not hidden under the sticky search box */
 html.pp26 details.itm,details.itm{scroll-margin-top:calc(var(--hdr,64px) + 150px)}
+/* pal page: the trading card stays exactly as-is (only its art is upgraded) — framed, rounded, shadowed */
+html.pp26 .pal-hero .pal-card.tcard{width:min(400px,100%)!important;max-width:400px;height:auto;max-height:none;aspect-ratio:520/728;border-radius:18px!important;box-shadow:var(--psh2)!important;object-fit:contain}
+@media (max-width:700px){html.pp26 .pal-hero{grid-template-columns:1fr;padding:20px;min-height:0}html.pp26 .pal-hero .pal-card.tcard{width:min(330px,84vw)!important;order:-2}}
