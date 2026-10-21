@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const f = document.querySelector(".ifl");
   if (!f) return;
   const q = f.querySelector(".pfq"), n = f.querySelector(".pfn");
-  const cards = [...document.querySelectorAll(".icard")];
+  const cards = [...document.querySelectorAll(".icard,.itm")];
   const run = () => {
     const v = (q.value || "").toLowerCase().replace(/ё/g, "\u0435");
     let c = 0;
@@ -190,6 +190,24 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   q.addEventListener("input", run);
   run();
+  const openHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const d = id && document.getElementById(id);
+    if (d && d.tagName == "DETAILS") {
+      d.open = true;
+      setTimeout(() => d.scrollIntoView({ block: "start", behavior: "smooth" }), 60);
+    }
+  };
+  openHash();
+  addEventListener("hashchange", openHash);
+  document.querySelectorAll("details.itm").forEach((d) => d.addEventListener("toggle", () => {
+    if (d.open) {
+      document.querySelectorAll("details.itm[open]").forEach((o) => {
+        if (o !== d) o.open = false;
+      });
+      history.replaceState(null, "", "#" + d.id);
+    }
+  }));
 });
 document.addEventListener("DOMContentLoaded", () => {
   const F = document.querySelector(".food");

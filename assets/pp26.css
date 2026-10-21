@@ -118,3 +118,24 @@ html.pp26 .leaflet-popup-content-wrapper{border-radius:20px;background:var(--car
 html.pp26 .leaflet-popup-tip{background:var(--card)}
 html.pp26 .mpcard .mpgo{background:var(--red);color:#fff;border-radius:99px}
 html.pp26 .leaflet-bar a{background:var(--card);color:var(--ink);border-color:var(--pline)}
+
+/* ---------- UX50 layer components (preview) ---------- */
+html.pp26 .ux-tabbar{left:16px!important;right:16px!important;bottom:calc(16px + env(safe-area-inset-bottom))!important;border-radius:24px!important;background:var(--glass)!important;border:1px solid var(--pline2)!important;box-shadow:var(--psh2)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4)}
+html.pp26 .ux-tabbar a{color:var(--mu)!important;font:700 11px Manrope,sans-serif!important;border-radius:16px}
+html.pp26 .ux-tabbar a.on,html.pp26 .ux-tabbar a[aria-current]{color:var(--redink)!important;background:color-mix(in srgb,var(--red) 10%,transparent)!important}
+html.pp26 .ux-btn,html.pp26 .ux-act{border-radius:99px!important;background:var(--red)!important;color:#fff!important;border:0!important;font:700 14px Manrope,sans-serif!important;box-shadow:var(--psh1)}
+html.pp26 .ux-btn.ghost{background:var(--card)!important;color:var(--ink)!important;border:1px solid var(--pline2)!important}
+html.pp26 .ux-tile,html.pp26 .ux-icard,html.pp26 .ux-intro{border-radius:var(--r)!important;background:var(--card)!important;border:1px solid var(--pline)!important;box-shadow:var(--psh1)!important;color:var(--ink)}
+html.pp26 .ux-chip,html.pp26 .ux-qb,html.pp26 .ux-cr{border-radius:99px!important;background:var(--card)!important;border:1px solid var(--pline)!important;color:var(--ink)!important;font-weight:700}
+html.pp26 .ux-qb.on,html.pp26 .ux-cr-on{background:var(--ink)!important;color:var(--pbg)!important}
+html.pp26 .ux-in{border-radius:99px!important;background:var(--card)!important;border:1px solid var(--pline2)!important;color:var(--ink)!important;font-size:16px}
+
+/* ---------- items (stage 1) ---------- */
+html.pp26 .itm{border-radius:20px;background:var(--card);box-shadow:var(--psh1);border:1px solid var(--pline)}
+html.pp26 .itm>summary:after{height:4px}
+html.pp26 .itm .itn{font-family:Manrope,sans-serif;font-size:13px}
+html.pp26 .ihd h3{font:800 20px/1.1 Unbounded,sans-serif!important}
+html.pp26 .ist{background:var(--pbg2);border-radius:16px}
+html.pp26 .ist b{font:700 15px "JetBrains Mono",monospace}
+html.pp26 .ich,html.pp26 .iso{background:var(--pbg2)}
+html.pp26 .iso .isp{font-family:"JetBrains Mono",monospace}

@@ -68,7 +68,7 @@
         });
         const top = [...L].sort((a, b) => b.l - a.l).slice(0, 6);
         const easy = L.filter((a) => a.wild && a.lv <= 15).sort((a, b) => b.l - a.l || a.lv - b.lv).slice(0, 6);
-        const f = (a) => `${a.p.ru} (${w} ${a.l}${a.wild && a.lv < 99 ? ", \u043B\u043E\u0432\u0438\u0442\u0441\u044F \u0441 \u0443\u0440\u043E\u0432\u043D\u044F " + a.lv : ""})`;
+        const f = (a) => `${a.p.ru} (\u0441\u0438\u043B\u0430 \u0440\u0430\u0431\u043E\u0442\u044B ${a.l}${a.wild && a.lv < 99 ? ", \u043B\u043E\u0432\u0438\u0442\u0441\u044F \u0441 \u0443\u0440\u043E\u0432\u043D\u044F \u0438\u0433\u0440\u043E\u043A\u0430 " + a.lv : ""})`;
         out.push(`\u041B\u0443\u0447\u0448\u0438\u0435 \u043F\u0430\u043B\u044B \u0434\u043B\u044F \u0440\u0430\u0431\u043E\u0442\u044B \xAB${w}\xBB: ${top.map(f).join(", ")}.`);
         if (easy.length) out.push(`\u0414\u043B\u044F \u0440\u0430\u0431\u043E\u0442\u044B \xAB${w}\xBB \u0432 \u043D\u0430\u0447\u0430\u043B\u0435 \u0438\u0433\u0440\u044B \u043B\u0435\u0433\u043A\u043E \u043F\u043E\u0439\u043C\u0430\u0442\u044C: ${easy.map(f).join(", ")}.`);
       });
@@ -213,6 +213,7 @@
     if (document.body && document.body.style.paddingBottom !== v) document.body.style.paddingBottom = v;
   };
   document.addEventListener("focusin", upd);
+  document.addEventListener("input", () => setTimeout(upd, 60));
   document.addEventListener("focusout", () => setTimeout(upd, 60));
   document.addEventListener("click", () => setTimeout(upd, 60));
   const mo = new MutationObserver(() => {
@@ -220,7 +221,9 @@
     mo.t = setTimeout(upd, 40);
   });
   const start = () => {
-    mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden", "class", "style"] });
+    mo.observe(document.body, { childList: true });
+    const sx = document.getElementById("sxp");
+    sx && mo.observe(sx, { attributes: true, attributeFilter: ["hidden", "class"], childList: true });
     upd();
   };
   document.body ? start() : document.addEventListener("DOMContentLoaded", start);
