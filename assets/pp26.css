@@ -139,3 +139,57 @@ html.pp26 .ist{background:var(--pbg2);border-radius:16px}
 html.pp26 .ist b{font:700 15px "JetBrains Mono",monospace}
 html.pp26 .ich,html.pp26 .iso{background:var(--pbg2)}
 html.pp26 .iso .isp{font-family:"JetBrains Mono",monospace}
+
+/* ---------- stage-1 layout ---------- */
+html.pp26 .pp-brand{font:800 17px/1 Unbounded,Manrope,sans-serif;letter-spacing:-.02em;color:var(--ink)!important;text-decoration:none;margin-right:12px;white-space:nowrap}
+@media (max-width:599px){html.pp26 .pp-brand{display:none}}
+html.pp26 .md-header__title{display:none!important}
+/* stage-1 pages: no side columns, centred 1280 grid */
+@media (min-width:1220px){html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-sidebar{display:none}
+ html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-content{max-width:1280px;margin:0 auto}
+ html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal,.pp-map,.pp-items) .md-main__inner{max-width:1280px}}
+@media (min-width:960px) and (max-width:1219px){html.pp26 body:is(.pp-pal,.pp-boss,.pp-home,.pp-gal) .md-sidebar--secondary{display:none}}
+/* home hero: sky scene + cast */
+html.pp26 .hero{background:linear-gradient(180deg,#5db7ec 0%,#9fd6f3 38%,#ffe2a8 64%,#f6b37a 100%)!important;min-height:560px;isolation:isolate;align-items:flex-end}
+html.pp26 .hero:before,html.pp26 .hero:after{display:none!important}
+html.pp26 .hero .hero-in{position:relative;z-index:2;background:linear-gradient(180deg,transparent,rgba(19,32,42,.34) 40%,rgba(19,32,42,.55));padding:28px 24px 24px;margin:0;width:100%;border-radius:0 0 var(--r) var(--r)}
+html.pp26 .pp-cast{position:absolute;inset:0;z-index:0;pointer-events:none}
+html.pp26 .pp-cast img{position:absolute;height:auto;filter:drop-shadow(0 18px 18px rgba(19,32,42,.28))}
+html.pp26 .pp-cast .ly{width:62%;max-width:420px;left:50%;top:2%;transform:translateX(-50%)}
+html.pp26 .pp-cast .jt{width:42%;max-width:300px;left:-6%;top:2%;transform:rotate(-8deg)}
+html.pp26 .pp-cast .lb{width:28%;max-width:180px;right:2%;top:30%}
+html.pp26 .pp-cast .ct{width:22%;max-width:140px;left:6%;top:38%}
+html.pp26 .pp-cast .sun{position:absolute;width:280px;height:280px;border-radius:50%;left:50%;top:30%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff7d1 0 30%,rgba(255,231,150,.6) 45%,transparent 70%);z-index:-1}
+@media (min-width:900px){html.pp26 .hero{min-height:620px}html.pp26 .pp-cast .ly{left:auto;right:4%;top:auto;bottom:0;transform:none;width:38%}html.pp26 .pp-cast .jt{left:auto;right:34%;top:4%;width:24%}html.pp26 .pp-cast .lb{right:2%;top:6%;width:13%}html.pp26 .pp-cast .ct{left:auto;right:42%;top:auto;bottom:6%;width:11%}
+ html.pp26 .hero .hero-in{max-width:640px;background:none;padding:48px}html.pp26 .hero .hero-in h1{font-size:72px}}
+/* pal page hero: name + facts left, art right, giant watermark */
+html.pp26 .pp-eb{font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);white-space:pre}
+html.pp26 .pal-info h1{margin:.15em 0 .3em!important}
+html.pp26 .pal-hero{position:relative;isolation:isolate}
+html.pp26 .pal-hero:after{content:attr(data-wm);position:absolute;right:-2%;bottom:-6%;z-index:-1;font:900 clamp(80px,16vw,220px)/.8 Unbounded,sans-serif;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--ink) 10%,transparent);text-transform:uppercase;white-space:nowrap;pointer-events:none}
+html.pp26 .pal-card,html.pp26 .pal-art{background:none!important;box-shadow:none!important;border:0!important}
+@media (min-width:900px){html.pp26 .pal-hero{display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px;padding:40px;align-items:center;min-height:520px}
+ html.pp26 .pal-hero .pal-info{order:-1}html.pp26 .pal-hero .pal-card{width:100%!important;max-width:520px;justify-self:center}}
+html.pp26 .infotiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+/* gallery cards */
+html.pp26 .pc{--e:var(--glow,var(--neutral));background:linear-gradient(180deg,color-mix(in srgb,var(--e) 16%,var(--card)),var(--card) 80%)!important;border:1px solid var(--pline);box-shadow:var(--psh1)!important;border-radius:var(--r)!important;align-items:flex-start!important;text-align:left!important;padding:16px!important}
+html.pp26 .pc img{align-self:center;filter:drop-shadow(0 12px 12px rgba(19,32,42,.22))}
+html.pp26 .pc small{font:600 12px "JetBrains Mono",monospace;color:var(--mu);letter-spacing:.06em}
+html.pp26 .pc b{font:800 18px/1.1 Unbounded,sans-serif!important;letter-spacing:-.02em;color:var(--ink);min-height:0!important}
+html.pp26 .pc:hover{transform:translateY(-4px);box-shadow:var(--psh2)!important}
+/* element chips: always readable */
+html.pp26 .md-typeset .el,html.pp26 .el{color:var(--ink)!important;background:color-mix(in srgb,var(--e) 18%,var(--card))!important;border:1px solid color-mix(in srgb,var(--e) 45%,transparent)!important}
+html.pp26 .el:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--e);flex:none}
+/* boss hero */
+html.pp26 .boss-hero{padding:24px}
+html.pp26 .boss-hero h2{font:800 clamp(30px,6vw,56px)/.95 Unbounded,sans-serif!important;letter-spacing:-.03em;color:var(--ink)!important}
+html.pp26 .boss-hero .kind{font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--redink)!important}
+@media (min-width:900px){html.pp26 .boss-hero{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:40px;min-height:460px}html.pp26 .boss-hero .bimg{order:2;width:100%!important;height:auto!important;max-width:460px;justify-self:center}}
+
+html.pp26 .pal-hero .pal-info>.nochip,html.pp26 .pal-hero .pal-info>.pal-no{display:none}
+html.pp26 .boss-hero{background:radial-gradient(120% 90% at 80% 30%,color-mix(in srgb,var(--e,var(--red)) 26%,var(--card)),var(--card) 62%)!important}
+html.pp26 .boss-hero h1{font:800 clamp(30px,6vw,60px)/.95 Unbounded,sans-serif!important;letter-spacing:-.03em;margin:.1em 0 .3em!important;color:var(--ink)}
+html.pp26 .hero .hero-in,html.pp26 .hero .hero-in p,html.pp26 .hero .hero-in h1{color:var(--ink)!important;text-shadow:0 1px 0 rgba(255,255,255,.35)}
+html.pp26 .hero .hero-in{background:linear-gradient(180deg,transparent,rgba(255,226,168,.55) 35%,rgba(246,179,122,.75))}
+@media (min-width:900px){html.pp26 .hero .hero-in{background:none}}
+html.pp26 [data-md-color-scheme=slate] .hero .hero-in,html.pp26 [data-md-color-scheme=slate] .hero .hero-in p,html.pp26 [data-md-color-scheme=slate] .hero .hero-in h1{color:#13202a!important}
