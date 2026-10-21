@@ -7,9 +7,23 @@ const E={'🐾':'paw','⚖️':'scale','👑':'crown','🗺️':'route','✨':'s
 const svg=k=>'<svg class="v27i" viewBox="0 0 24 24" aria-hidden="true">'+P[k]+'</svg>';
 const EM=/^\s*([\p{Extended_Pictographic}\u2B50\u2705][\uFE0F\u200D\p{Extended_Pictographic}]*)\s*/u;
 function strip(el,icon){const w=d.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n=w.nextNode();while(n&&!n.nodeValue.trim())n=w.nextNode();if(!n)return;const m=n.nodeValue.match(EM);if(!m)return;n.nodeValue=n.nodeValue.slice(m[0].length);if(icon&&E[m[1]]&&!el.querySelector('.v27i'))el.insertAdjacentHTML('afterbegin',svg(E[m[1]]))}
-function run(root){root=root||d;
+
+const TX=[["Энциклопедия Palworld","Твой проводник по Палпагосу","h1"],
+["Всё о Palworld на русском: уровни 0–80, 299 палов, 1599 предметов, боссы, пассивки, разведение и секреты.","299 палов, боссы, разведение и тайники — коротко и по-русски."],
+["двух палов рядом","бок о бок"],["с 1 до 80 уровня","по шагам до финала"],["лучшие наборы","что кому ставить"],["пасхалки и тайники","то, что легко пропустить"],
+["где взять и крафт","добыча и крафт"],["калькулятор пар","кто с кем даст нужного"],["блюда, баффы, кухни","что поесть перед боем"],
+["Открой пару палов — они появятся здесь.","Здесь появятся палы, которых ты смотрел."],["Нажми ☆ на странице пала.","Отмечай палов ☆ — они соберутся здесь."],
+["Сообщить об ошибке","Нашёл ошибку? Напиши"],["Что дальше?","Куда дальше"],["Скрыть, где был","Скрыть посещённые"],
+["Что делать на моём уровне","Что делать на моём уровне"],["404 - Not found","Такой страницы нет"],["Спросить","Поиск"],
+["Статуэтки Лифмунка и входы в подземелья меняют место, поэтому их нет на карте. Мировое Древо — отдельная карта.","Статуэтки Лифмунка и подземелья каждый раз в новом месте — поэтому их нет на карте. Мировое древо открывается отдельно."],
+["Кто лучше копает?","Найти пала, предмет или босса"]];
+function texts(root){const w=d.createTreeWalker(root||d.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.parentElement.closest('.pal-card,script,style'))continue;const v=n.nodeValue.trim();if(!v)continue;for(const [a,b,only] of TX){if(v===a&&(!only||n.parentElement.closest(only))){n.nodeValue=n.nodeValue.replace(a,b);break}}}
+ d.querySelectorAll('input[placeholder]').forEach(i=>{for(const [a,b] of TX)if(i.placeholder===a)i.placeholder=b})}
+
+function run(root){root=root||d;texts(root.body||root);
  root.querySelectorAll('.md-typeset h1,.md-typeset h2,.md-typeset h3,.ux-cr,.md-header__topic .md-ellipsis,.md-tabs__link,.md-nav__link,.ux-next .ux-h,.bug-link').forEach(e=>strip(e,false));
- root.querySelectorAll('.ux-chip,.ux-ver,.ux-act,.lbtns button,.partner .actc,.wbar>span,.pal-info .works>span').forEach(e=>strip(e,true));
+ root.querySelectorAll('.ux-btn,.ux-chip,.ux-ver,.ux-act,.lbtns button,.partner .actc,.wbar>span,.pal-info .works>span').forEach(e=>strip(e,true));
+ root.querySelectorAll('.potd div,.potd span').forEach(e=>{for(const n of e.childNodes)if(n.nodeType==3)n.nodeValue=n.nodeValue.replace(/[\p{Extended_Pictographic}\uFE0F]/gu,'').replace(/ {2,}/g,' ')});
  root.querySelectorAll('.ux-tabbar a>span[aria-hidden]').forEach(sp=>{const k=E[sp.textContent.trim()]||({'🔍':'search'})[sp.textContent.trim()];if(!sp.querySelector('.v27i'))sp.innerHTML=k&&P[k]?svg(k):(k=='search'?'<svg class="v27i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>':'')});
  root.querySelectorAll('.tile .ti').forEach(t=>{const k=E[t.textContent.trim()];if(k&&!t.querySelector('.v27i')){t.innerHTML=svg(k);}});
  if(!RM&&'IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
@@ -24,3 +38,14 @@ addEventListener('resize',top,{passive:true});
 if(d.readyState=='loading')d.addEventListener('DOMContentLoaded',go);else go();
 if(window.document$&&document$.subscribe)document$.subscribe(()=>setTimeout(go,0));
 })();
+;(function(){const d=document;if(!d.documentElement.classList.contains('v27'))return;const hq=d.getElementById('home-q');if(!hq)return;
+const open=v=>{hq.blur();(window.PW_search?window.PW_search(v||null):(window.UX&&UX.openSearch?UX.openSearch(v):0))};
+hq.addEventListener('focus',e=>e.stopImmediatePropagation(),true);
+hq.addEventListener('mousedown',e=>{e.preventDefault();open(hq.value)});
+hq.addEventListener('keydown',e=>{if(e.key==='Enter'||(e.key.length===1&&!e.ctrlKey&&!e.metaKey)){e.preventDefault();open((hq.value||'')+(e.key.length===1?e.key:''))}});})();
+;(function(){const d=document;if(!d.documentElement.classList.contains('v27'))return;let tries=0;function toc(){const qa=d.querySelector('.ux-qa');if(!qa||!d.querySelector('.pal-card')||!d.querySelector('.ux-palx')){if(tries++<20)setTimeout(toc,250);return}if(d.querySelector('.v27-toc'))return;
+const S=[['.ux-palx','Где живёт'],['.infotiles','Характеристики'],['.tabbed-set','Работа и навыки'],['section.bld','Сборка'],['.ux-sim','Похожие']];
+const n=d.createElement('nav');n.className='v27-toc';n.setAttribute('aria-label','Разделы страницы');
+S.forEach(([s,t],i)=>{const e=d.querySelector('.md-content '+s);if(!e)return;e.id=e.id||'s-'+i;e.style.scrollMarginTop='120px';const a=d.createElement('a');a.href='#'+e.id;a.textContent=t;n.appendChild(a)});
+if(n.children.length<2)return;qa.after(n);
+const links=[...n.querySelectorAll('a')];if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.hash==='#'+x.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});links.forEach(l=>{const t=d.getElementById(l.hash.slice(1));t&&io.observe(t)})}}if(d.readyState=='complete')toc();else addEventListener('load',toc)})();
