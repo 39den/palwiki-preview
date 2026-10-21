@@ -38,7 +38,7 @@ html.pp26 .md-header__button.md-logo img,html.pp26 .md-header__button.md-logo sv
 html.pp26 .md-header__button.md-logo{position:relative;width:28px;height:28px;margin:0 4px 0 8px;padding:0;border-radius:50%;background:linear-gradient(var(--red) 0 44%,var(--ink) 44% 56%,#fff 56%);box-shadow:inset 0 -3px 6px rgba(0,0,0,.2),0 2px 6px rgba(212,43,34,.35)}
 html.pp26 .md-header__button.md-logo:after{content:"";position:absolute;inset:8px;border-radius:50%;background:#fff;border:2.5px solid var(--ink)}
 html.pp26 .hsx{height:44px;border-radius:99px;background:var(--card);border:1px solid var(--pline);box-shadow:var(--psh1);color:var(--mu);padding:0 6px 0 14px}
-html.pp26 .hsx:focus-within{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 22%,transparent)}
+html.pp26 .hsx:focus-within{border-color:#2f6fde;box-shadow:0 0 0 3px rgba(47,111,222,.22)}
 html.pp26 .hsx input{color:var(--ink);font-weight:600}
 html.pp26 .hsx input::placeholder{color:var(--mu)}
 html.pp26 .md-tabs{background:transparent;color:var(--ink);border-bottom:1px solid var(--pline)}
@@ -230,3 +230,7 @@ html.pp26 details.itm,details.itm{scroll-margin-top:calc(var(--hdr,64px) + 150px
 /* pal page: the trading card stays exactly as-is (only its art is upgraded) — framed, rounded, shadowed */
 html.pp26 .pal-hero .pal-card.tcard{width:min(400px,100%)!important;max-width:400px;height:auto;max-height:none;aspect-ratio:520/728;border-radius:18px!important;box-shadow:var(--psh2)!important;object-fit:contain}
 @media (max-width:700px){html.pp26 .pal-hero{grid-template-columns:1fr;padding:20px;min-height:0}html.pp26 .pal-hero .pal-card.tcard{width:min(330px,84vw)!important;order:-2}}
+/* no red borders anywhere in the skin: buttons and buff chips use neutral lines; attack stays recognisable by its icon/tint */
+html.pp26 .md-typeset .md-button,html.pp26 .md-typeset .md-button--primary{border-color:var(--pline2)!important}
+html.pp26 .fb{border-color:var(--pline2)!important}
+html.pp26 .fb.fb-атака{background:color-mix(in srgb,#ff8a3d 14%,var(--card));color:var(--ink)}

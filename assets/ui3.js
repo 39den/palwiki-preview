@@ -821,23 +821,33 @@ document.addEventListener("DOMContentLoaded", () => {
     vv.addEventListener("scroll", place);
   }
 });
+const _noAF = (i) => {
+  if (!i || i.tagName != "INPUT" || i.type == "range" || i.type == "number" || i.type == "checkbox" || i.type == "radio" || i.dataset.naf) return;
+  i.dataset.naf = 1;
+  i.setAttribute("autocomplete", "off");
+  i.setAttribute("autocorrect", "off");
+  i.setAttribute("autocapitalize", "off");
+  i.setAttribute("spellcheck", "false");
+  if (!i.getAttribute("enterkeyhint")) i.setAttribute("enterkeyhint", "search");
+  if (i.type == "text" && i.id != "nl") i.type = "search";
+  if (!i.name) i.name = "pp-q-" + (i.id || i.className.split(" ")[0] || "f");
+};
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("input[type=search],input[type=text],#mapq,#hsq,.sk-q,#bq2,#gq,.pfq,.psvq,.ffq,#askq,#home-q").forEach((i) => {
-    if (i.type == "range" || i.type == "number") return;
-    i.setAttribute("autocomplete", "off");
-    i.setAttribute("autocorrect", "off");
-    i.setAttribute("autocapitalize", "off");
-    i.setAttribute("spellcheck", "false");
-    i.setAttribute("enterkeyhint", "search");
-    if (i.type == "text") i.type = "search";
-    if (!i.name) i.name = "pp-q-" + (i.id || i.className.split(" ")[0] || "f");
-  });
+  document.querySelectorAll("input").forEach(_noAF);
+  if (window.MutationObserver) new MutationObserver((ms) => {
+    for (const m of ms) for (const n of m.addedNodes) {
+      if (n.nodeType != 1) continue;
+      if (n.tagName == "INPUT") _noAF(n);
+      else if (n.querySelectorAll) n.querySelectorAll("input").forEach(_noAF);
+    }
+  }).observe(document.body, { childList: true, subtree: true });
 });
+document.addEventListener("focusin", (e) => _noAF(e.target), true);
 document.addEventListener("click", (e) => {
   const b = e.target.closest && e.target.closest(".pflip");
   if (!b) return;
   const w = b.closest(".pcardwrap");
-  const c = w.querySelector(".tcard"), r = w.querySelector(".pal-art2");
+  const c = w.querySelector(".tcard26"), r = w.querySelector(".pal-art2");
   if (!c || !r) return;
   const on = b.getAttribute("aria-pressed") != "true";
   c.hidden = on;
