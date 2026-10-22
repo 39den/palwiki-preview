@@ -1691,3 +1691,6 @@ html.v27 .md-top[hidden]{opacity:0;pointer-events:none}}
 img.palanim-ready{cursor:pointer;-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion:reduce){.palanim-live{display:none!important}img.palanim-ready{cursor:auto}}
 @media (min-width:1200px){a.tile.card-link[href*="t.me/PalGuideBot"]{display:none}}
+@media (max-width:759px){.md-main__inner:has(.hero){margin-top:8px}.md-typeset:has(>.hero){padding-top:4px}}
+.hero #home-q::placeholder{color:#4a5560!important;opacity:1!important;-webkit-text-fill-color:#4a5560!important}.hero #home-q::-webkit-input-placeholder{color:#4a5560!important;opacity:1!important;-webkit-text-fill-color:#4a5560!important}
+@media (min-width:760px){.hero .smart-box,.hero #home-q{width:420px;max-width:100%}}
