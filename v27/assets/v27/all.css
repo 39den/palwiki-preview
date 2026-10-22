@@ -1682,6 +1682,10 @@ html.v27 .md-top[hidden]{opacity:0;pointer-events:none}}
 .v27 .ux-act[data-l="Избранное"]>span{--v27m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linejoin='round'%3E%3Cpath d='m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'/%3E%3C/svg%3E")}
 .v27 .ux-act[data-l="Избранное"][aria-pressed="true"]>span{--v27m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'/%3E%3C/svg%3E");color:#f5b63c}
 .v27 .hlp-pop{z-index:2147483000!important}
+@media (min-width:1200px){a.tile.card-link[href*="t.me/PalGuideBot"]{display:none}}
+@media (max-width:759px){.md-main__inner:has(.hero){margin-top:8px}.md-typeset:has(>.hero){padding-top:4px}}
+.hero #home-q::placeholder{color:#4a5560!important;opacity:1!important;-webkit-text-fill-color:#4a5560!important}.hero #home-q::-webkit-input-placeholder{color:#4a5560!important;opacity:1!important;-webkit-text-fill-color:#4a5560!important}
+@media (min-width:760px){.hero .smart-box,.hero #home-q{width:420px;max-width:100%}}
 
 /* assets/palanim/palanim.css */
 /* Палпедия · живые палы. The animated layer is placed exactly over the static card art window / thumbnail by palanim.js. */
@@ -1690,7 +1694,3 @@ html.v27 .md-top[hidden]{opacity:0;pointer-events:none}}
 .palanim-live.on{opacity:1}
 img.palanim-ready{cursor:pointer;-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion:reduce){.palanim-live{display:none!important}img.palanim-ready{cursor:auto}}
-@media (min-width:1200px){a.tile.card-link[href*="t.me/PalGuideBot"]{display:none}}
-@media (max-width:759px){.md-main__inner:has(.hero){margin-top:8px}.md-typeset:has(>.hero){padding-top:4px}}
-.hero #home-q::placeholder{color:#4a5560!important;opacity:1!important;-webkit-text-fill-color:#4a5560!important}.hero #home-q::-webkit-input-placeholder{color:#4a5560!important;opacity:1!important;-webkit-text-fill-color:#4a5560!important}
-@media (min-width:760px){.hero .smart-box,.hero #home-q{width:420px;max-width:100%}}
