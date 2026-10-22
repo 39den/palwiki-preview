@@ -96,7 +96,7 @@ html.v27 .tabbar{background:var(--v-glass)!important;-webkit-backdrop-filter:blu
 .v27 .md-header__button[for="__search"]{display:none!important}
 .v27 .md-search__inner{width:min(420px,52vw)}
 html.v27 .md-header__button.md-logo img{content:url(mark.svg);width:26px!important;height:26px!important}
-.v27 .ux-tabbar a>span[aria-hidden]{font-size:0;display:block;height:22px;line-height:0}
+.v27 .ux-tabbar a>span[aria-hidden]{display:block;height:22px;line-height:22px;font-size:20px}.v27 .ux-tabbar a>span[aria-hidden]:has(svg){font-size:0;line-height:0}
 .v27 .ux-tabbar .v27i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7}
 .v27 .ux-tabbar{backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
 .v27 .ux-ver .v27i{width:14px;height:14px;vertical-align:-2px;margin-right:4px;stroke:currentColor;fill:none;stroke-width:2}
@@ -235,3 +235,6 @@ html.v27 .leaflet-popup-close-button{width:40px!important;height:40px!important;
 @media (max-width:600px){html.v27 .leaflet-popup-content-wrapper{max-width:calc(100vw - 32px)!important;max-height:60vh;overflow:auto}html.v27 .leaflet-popup-content{max-width:calc(100vw - 64px)!important;width:auto!important}}
 html.v27 .leaflet-popup-content-wrapper,html.v27 .leaflet-popup-tip{background:var(--v-surf)!important;color:var(--v-fg)!important}
 .v27-skip{background:#0b6b78!important;color:#fff!important}
+/* n1: кнопка «наверх» на телефоне/планшете — внизу справа над нижним меню, не над заголовком */
+@media (max-width:76.234375em){html.v27 .md-top{top:auto!important;bottom:calc(84px + env(safe-area-inset-bottom,0px))!important;right:14px!important;left:auto!important;transform:none!important;margin:0!important;width:44px;height:44px;padding:10px;border-radius:50%;z-index:5}
+html.v27 .md-top[hidden]{opacity:0;pointer-events:none}}
