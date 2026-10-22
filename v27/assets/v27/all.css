@@ -1690,3 +1690,4 @@ html.v27 .md-top[hidden]{opacity:0;pointer-events:none}}
 .palanim-live.on{opacity:1}
 img.palanim-ready{cursor:pointer;-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion:reduce){.palanim-live{display:none!important}img.palanim-ready{cursor:auto}}
+@media (min-width:1200px){a.tile.card-link[href*="t.me/PalGuideBot"]{display:none}}
