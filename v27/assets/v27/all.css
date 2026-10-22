@@ -1676,6 +1676,12 @@ html.v27 .leaflet-popup-content-wrapper,html.v27 .leaflet-popup-tip{background:v
 /* n1: кнопка «наверх» на телефоне/планшете — внизу справа над нижним меню, не над заголовком */
 @media (max-width:76.234375em){html.v27 .md-top{top:auto!important;bottom:calc(84px + env(safe-area-inset-bottom,0px))!important;right:14px!important;left:auto!important;transform:none!important;margin:0!important;width:44px;height:44px;padding:10px;border-radius:50%;z-index:5}
 html.v27 .md-top[hidden]{opacity:0;pointer-events:none}}
+/* v27: игровые иконки «Поделиться»/«Избранное» */
+.v27 .ux-act[data-share]>span,.v27 .ux-act[data-l="Избранное"]>span{font-size:0;display:inline-block;width:18px;height:18px;margin-right:6px;vertical-align:-3px;background:currentColor;-webkit-mask:var(--v27m) center/contain no-repeat;mask:var(--v27m) center/contain no-repeat}
+.v27 .ux-act[data-share]>span{--v27m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='18' cy='5' r='2.6'/%3E%3Ccircle cx='6' cy='12' r='2.6'/%3E%3Ccircle cx='18' cy='19' r='2.6'/%3E%3Cpath d='m8.3 10.7 7.4-4.3M8.3 13.3l7.4 4.3'/%3E%3C/svg%3E")}
+.v27 .ux-act[data-l="Избранное"]>span{--v27m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linejoin='round'%3E%3Cpath d='m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'/%3E%3C/svg%3E")}
+.v27 .ux-act[data-l="Избранное"][aria-pressed="true"]>span{--v27m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'/%3E%3C/svg%3E");color:#f5b63c}
+.v27 .hlp-pop{z-index:2147483000!important}
 
 /* assets/palanim/palanim.css */
 /* Палпедия · живые палы. The animated layer is placed exactly over the static card art window / thumbnail by palanim.js. */

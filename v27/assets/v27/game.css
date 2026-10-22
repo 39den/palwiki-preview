@@ -149,3 +149,8 @@ html.v27 .md-nav__link--active{color:#0b5f66!important}html.v27 [data-md-color-s
 html.v27 .md-typeset *:not(code):not(pre){overflow-wrap:break-word!important}html.v27 .md-typeset code{overflow-wrap:anywhere}
 html.v27 .md-typeset .ux-mats .ux-ct{font-size:15px!important}html.v27 .md-typeset .ux-mats{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important}@media (max-width:430px){html.v27 .md-typeset .cx-nm b{font-size:13px!important}html.v27 .md-typeset .cx-pal{flex-direction:column!important;align-items:center;text-align:center}}
 html.v27 .md-typeset .gl{max-width:100%!important;flex:0 1 auto;min-width:0}html.v27 .md-typeset .igt{flex-wrap:wrap}
+html.v27 body.pp-home a.tile[href*="teamcheck/"] .ti{background-image:url(game/Fire.webp),radial-gradient(circle at 50% 40%,rgba(120,220,255,.28),rgba(120,220,255,.06))!important}
+@media (min-width:1024px){html.v27 body.pp-home .tiles a.tile[href*="t.me"]{display:none!important}}
+@media (max-width:1023.98px){html.v27 body.pp-home .tiles a.tile[href*="t.me"]{grid-column:1/-1}}
+/* v27: скелет «Пала дня» по высоте карточки (без скачка и лишней прокрутки) */
+html.v27 #potd .skel{height:216px!important}@media (min-width:1024px){html.v27 #potd .skel{height:141px!important}}

@@ -43,7 +43,7 @@
   const ELI = { "\u041D\u0435\u0439\u0442\u0440\u0430\u043B\u044C\u043D\u044B\u0439": "\u26AA", "\u041E\u0433\u043E\u043D\u044C": "\u{1F525}", "\u0412\u043E\u0434\u0430": "\u{1F4A7}", "\u0422\u0440\u0430\u0432\u0430": "\u{1F33F}", "\u041C\u043E\u043B\u043D\u0438\u044F": "\u26A1", "\u041B\u0451\u0434": "\u2744\uFE0F", "\u0417\u0435\u043C\u043B\u044F": "\u{1FAA8}", "\u0422\u044C\u043C\u0430": "\u{1F311}", "\u0414\u0440\u0430\u043A\u043E\u043D": "\u{1F409}" };
   const chip = (e) => window.PW_chip ? window.PW_chip(e) : `<span class="el el-${ELC[e] || ""}">${esc(e)}</span>`;
   let _D = null, _X = null, _R = null;
-  const data = () => _D || (_D = (window.PW_load || window.PW_data)());
+  const data = () => _D || (_D = ((document.getElementById('potd')&&window.PW_data)||window.PW_load || window.PW_data)());
   const ux = () => _X || (_X = fetch(B + "assets/ux50_data.json").then((r) => r.json()));
   const ref = () => _R || (_R = fetch(B + "assets/ux50_ref.json").then((r) => r.json()));
   try {
